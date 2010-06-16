@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 16, 2010 7:13:39 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.adina.objects.AngajatZiMunca" table="angajat_zi_munca" catalog="employees">
+        <id name="idAngajatZi" type="java.lang.Long">
+            <column name="id_angajat_zi" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="angajat" class="com.adina.objects.Angajat" fetch="select">
+            <column name="id_angajat" />
+        </many-to-one>
+        <property name="ziua" type="date">
+            <column name="ziua" length="10" />
+        </property>
+        <property name="nrOre" type="java.lang.Integer">
+            <column name="nr_ore" />
+        </property>
+    </class>
+</hibernate-mapping>

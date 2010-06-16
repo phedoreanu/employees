@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="employees"/>
+  <table-filter match-name="user_roles"/>
+  <table-filter match-name="angajat_abilitate"/>
+  <table-filter match-name="clasa_salariu"/>
+  <table-filter match-name="angajat_loc_anterior"/>
+  <table-filter match-name="studii_angajat"/>
+  <table-filter match-name="users"/>
+  <table-filter match-name="clasa_concediu"/>
+  <table-filter match-name="functie"/>
+  <table-filter match-name="evaluare_anuala"/>
+  <table-filter match-name="loc_munca_anterior"/>
+  <table-filter match-name="angajat_zi_munca"/>
+  <table-filter match-name="abilitate"/>
+  <table-filter match-name="angajat"/>
+</hibernate-reverse-engineering>

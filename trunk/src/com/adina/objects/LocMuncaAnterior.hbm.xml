@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 16, 2010 7:13:39 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.adina.objects.LocMuncaAnterior" table="loc_munca_anterior" catalog="employees">
+        <id name="idLocMunca" type="java.lang.Long">
+            <column name="id_loc_munca" />
+            <generator class="identity" />
+        </id>
+        <property name="numeLoc" type="string">
+            <column name="nume_loc" length="50" not-null="true" />
+        </property>
+        <set name="angajatLocAnteriors" inverse="true">
+            <key>
+                <column name="id_loc_munca" />
+            </key>
+            <one-to-many class="com.adina.objects.AngajatLocAnterior" />
+        </set>
+    </class>
+</hibernate-mapping>
