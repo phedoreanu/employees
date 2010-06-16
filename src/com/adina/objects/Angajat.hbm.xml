@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 16, 2010 7:13:39 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.adina.objects.Angajat" table="angajat" catalog="employees">
+        <id name="idAngajat" type="java.lang.Long">
+            <column name="id_angajat" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="clasaConcediu" class="com.adina.objects.ClasaConcediu" fetch="select">
+            <column name="id_clasa_concediu" />
+        </many-to-one>
+        <many-to-one name="users" class="com.adina.objects.Users" fetch="select">
+            <column name="id_user" />
+        </many-to-one>
+        <many-to-one name="clasaSalariu" class="com.adina.objects.ClasaSalariu" fetch="select">
+            <column name="id_clasa_salariu" />
+        </many-to-one>
+        <many-to-one name="functie" class="com.adina.objects.Functie" fetch="select">
+            <column name="id_functie" />
+        </many-to-one>
+        <property name="nume" type="string">
+            <column name="nume" length="50" not-null="true" />
+        </property>
+        <property name="cnp" type="string">
+            <column name="CNP" length="13" not-null="true" />
+        </property>
+        <property name="adresa" type="string">
+            <column name="adresa" length="50" not-null="true" />
+        </property>
+        <property name="activ" type="byte">
+            <column name="activ" not-null="true" />
+        </property>
+        <set name="angajatAbilitates" inverse="true">
+            <key>
+                <column name="id_angajat" />
+            </key>
+            <one-to-many class="com.adina.objects.AngajatAbilitate" />
+        </set>
+        <set name="studiiAngajats" inverse="true">
+            <key>
+                <column name="id_angajat" />
+            </key>
+            <one-to-many class="com.adina.objects.StudiiAngajat" />
+        </set>
+        <set name="angajatLocAnteriors" inverse="true">
+            <key>
+                <column name="id_angajat" />
+            </key>
+            <one-to-many class="com.adina.objects.AngajatLocAnterior" />
+        </set>
+        <set name="angajatZiMuncas" inverse="true">
+            <key>
+                <column name="id_angajat" />
+            </key>
+            <one-to-many class="com.adina.objects.AngajatZiMunca" />
+        </set>
+        <set name="evaluareAnualas" inverse="true">
+            <key>
+                <column name="id_angajat" />
+            </key>
+            <one-to-many class="com.adina.objects.EvaluareAnuala" />
+        </set>
+    </class>
+</hibernate-mapping>
