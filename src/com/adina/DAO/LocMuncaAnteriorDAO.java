@@ -6,21 +6,14 @@ import com.adina.vo.LocMuncaAnteriorVO;
 
 import java.util.List;
 import com.adina.util.HibernateUtil;
-import java.util.logging.Logger;
-import javax.transaction.HeuristicMixedException;
-import javax.transaction.HeuristicRollbackException;
-import javax.transaction.RollbackException;
-import javax.transaction.SystemException;
-
-import javax.transaction.Transaction;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-
+import org.hibernate.Transaction;
 
 public class LocMuncaAnteriorDAO {
-   // private static final Logger LOG = Logger.getLogger(LocMuncaAnteriorController.class);
+    // private static final Logger LOG = Logger.getLogger(LocMuncaAnteriorController.class);
 
-    public void fillPreviosWorkPlaceBean(LocMuncaAnteriorBean bean) throws SystemException, IllegalStateException, SecurityException, RollbackException, HeuristicRollbackException, HeuristicMixedException {
+    public void fillPreviosWorkPlaceBean(LocMuncaAnteriorBean bean) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
             Long idWorkPlace = bean.getId();
@@ -37,14 +30,14 @@ public class LocMuncaAnteriorDAO {
         }
     }
 
-    public List<LocMuncaAnteriorVO> getAllPreviousWorkPlaces() throws SystemException, IllegalStateException, SecurityException, RollbackException, HeuristicRollbackException, HeuristicMixedException {
+    public List<LocMuncaAnteriorVO> getAllPreviousWorkPlaces() {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
         List<LocMuncaAnteriorVO> workPlaceList = null;
 
         try {
             transaction = (Transaction) session.beginTransaction();
-            workPlaceList = session.createQuery("select new LocMuncaAnteriorVO(idLocMunca, numeLoc) from LocMuncaAnterior").list();
+            workPlaceList = session.createQuery("select new com.adina.vo.LocMuncaAnteriorVO(idLocMunca, numeLoc) from LocMuncaAnterior").list();
             transaction.commit();
         } catch (HibernateException e) {
             transaction.rollback();
@@ -55,7 +48,7 @@ public class LocMuncaAnteriorDAO {
         return workPlaceList;
     }
 
-    public void insertWorkPlace(LocMuncaAnteriorBean bean) throws IllegalStateException, SecurityException, RollbackException, HeuristicRollbackException, HeuristicMixedException, SystemException {
+    public void insertWorkPlace(LocMuncaAnteriorBean bean) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
 
@@ -73,7 +66,7 @@ public class LocMuncaAnteriorDAO {
         }
     }
 
-    public void updateWorkPlace(LocMuncaAnteriorBean bean) throws IllegalStateException, SystemException, RollbackException, HeuristicMixedException, HeuristicRollbackException {
+    public void updateWorkPlace(LocMuncaAnteriorBean bean) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
 
@@ -97,7 +90,7 @@ public class LocMuncaAnteriorDAO {
         }
     }
 
-    public void deleteWorkPlace(LocMuncaAnteriorBean bean) throws RollbackException, HeuristicMixedException, SecurityException, HeuristicRollbackException, SystemException {
+    public void deleteWorkPlace(LocMuncaAnteriorBean bean) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
 
@@ -110,7 +103,7 @@ public class LocMuncaAnteriorDAO {
                 session.delete(workPlace);
                 transaction.commit();
             } else {
-               // LOG.error("No work place id!");
+                // LOG.error("No work place id!");
             }
         } catch (HibernateException e) {
             transaction.rollback();
@@ -119,6 +112,5 @@ public class LocMuncaAnteriorDAO {
             session.close();
         }
     }
-
 }
 
