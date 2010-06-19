@@ -15,8 +15,8 @@ public class AbilitateBean implements Serializable {
     public AbilitateBean() {
 
         try {
-            String id = FacesUtil.getRequestParameter("id");
-            setId(Long.parseLong(id));
+            String id1 = FacesUtil.getRequestParameter("id");
+            setId(Long.parseLong(id1));
         } catch (NumberFormatException nfe) {
             //nfe.printStackTrace();
         }

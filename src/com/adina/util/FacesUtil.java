@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.adina.util;
 
 import java.util.HashMap;
@@ -10,10 +7,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.el.VariableResolver;
 import org.apache.log4j.Logger;
 
-/**
- *
- * @author fedo
- */
+
 public class FacesUtil {
 
     private static final Logger LOG = Logger.getLogger(FacesUtil.class);

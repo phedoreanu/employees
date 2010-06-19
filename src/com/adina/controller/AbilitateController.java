@@ -18,34 +18,29 @@ public class AbilitateController implements Serializable {
         abilitateDAO = new AbilitateDAO();
     }
 
-    public String updateAbilitate() {
-        AbilitateBean abilitateBean = (AbilitateBean) FacesUtil.getBeanByName("abilitateBean");
-
-        abilitateDAO.updateAbilitate(abilitateBean);
-
-        return "adminList";
-    }
-
-    public List<AbilitateVO> getAllAbilities() {
-       return abilitateDAO.getAllAbilities();
-    }
-
     public void fillAbilityBean(AbilitateBean bean) {
         abilitateDAO.fillAbilityBean(bean);
     }
-    
-//    public String insertAbilitate() {
-//        abilitateDAO.insertAbilitate(numeAbilitate);
-//        numeAbilitate = "";
-//        return null;
-//    }
-//
-//    public String deleteAbilitate() {
-//        FacesContext context = FacesContext.getCurrentInstance();
-//        Map<String, String> params = context.getExternalContext().getRequestParameterMap();
-//        Long idAbil = Long.parseLong(params.get("idAbil"));
-//        AbilitateDAO abilitateDAO = new AbilitateDAO();
-//        abilitateDAO.deleteAbilitate(idAbil);
-//        return null;
-//    }
+
+    public List<AbilitateVO> getAllAbilities() {
+        return abilitateDAO.getAllAbilities();
+    }
+
+    public String updateAbilitate() {
+        AbilitateBean abilitateBean = (AbilitateBean) FacesUtil.getBeanByName("abilitateBean");
+        abilitateDAO.updateAbilitate(abilitateBean);
+        return "adminList";
+    }
+
+    public String deleteAbilitate() {
+        AbilitateBean abilitateBean = (AbilitateBean) FacesUtil.getBeanByName("abilitateBean");
+        abilitateDAO.deleteAbilitate(abilitateBean);
+        return "adminList";
+    }
+
+    public String insertAbilitate() {
+        AbilitateBean abilitateBean = (AbilitateBean) FacesUtil.getBeanByName("abilitateBean");
+        abilitateDAO.insertAbilitate(abilitateBean);
+        return "afterInsert";
+    }
 }
