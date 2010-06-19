@@ -8,17 +8,36 @@
 <f:view>
     <html>
         <head>
-            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-            <title>JSP Page</title>
+            <title>Ability</title>
+            <link rel="stylesheet" type="text/css" href="../../css/cssverticalmenu.css"/>
+            <script type="text/javascript" src="../../javascript/cssverticalmenu.js"></script>
         </head>
-        <body>
-            <h:form>
-                <t:saveState value="#{abilitateBean}" />
-                
-                <h:inputText value="#{abilitateBean.name}" />
 
-                <h:commandButton action="#{abilitateController.updateAbilitate}" value="Update"/>
-            </h:form>
+        <body>
+            <table>
+                <tr>
+                    <td>
+                        <%@include file="../../menu.jsp" %>
+                    </td>
+                    <td>
+                        <h:form>
+
+                            <t:saveState value="#{abilitateBean}" />
+
+                            <h:outputText value="New ability name"/>&nbsp;&nbsp;
+                            <h:inputText value="#{abilitateBean.name}" />
+
+                            <h:commandButton action="#{abilitateController.updateAbilitate}" value="Update"/>
+                            <br><br>
+                            <h:outputText value="If you wish to delete this ability click "/>&nbsp;
+                            <h:commandLink action="#{abilitateController.deleteAbilitate}">
+                                <h:outputText value="here"/>
+                            </h:commandLink>
+
+                        </h:form>
+                    </td>
+                </tr>
+            </table>
         </body>
     </html>
 </f:view>

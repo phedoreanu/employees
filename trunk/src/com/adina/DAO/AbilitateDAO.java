@@ -17,6 +17,25 @@ public class AbilitateDAO {
 
     private static final Logger LOG = Logger.getLogger(AbilitateController.class);
 
+    public void fillAbilityBean(AbilitateBean bean) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        try {
+            Long idAbility = bean.getId();
+
+            if (idAbility != null) {
+                Abilitate abil = (Abilitate) session.get(Abilitate.class, idAbility);
+                bean.setName(abil.getNumeAbilitate());
+            } else {
+                bean.setAbilities(getAllAbilities());
+            }
+        } catch (HibernateException e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+
     public List<AbilitateVO> getAllAbilities() {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
@@ -34,41 +53,25 @@ public class AbilitateDAO {
         return listAbilitate;
     }
 
-//    public void insertAbilitate(String numeAbilitate) {
-//
-//        Session session = HibernateUtil.getSessionFactory().openSession();
-//        Transaction transaction = null;
-//        Abilitate a = new Abilitate();
-//        a.setNumeAbilitate(numeAbilitate);
-//        try {
-//            transaction = session.beginTransaction();
-//            session.save(a);
-//            transaction.commit();
-//        } catch (HibernateException e) {
-//            transaction.rollback();
-//            e.printStackTrace();
-//        } finally {
-//            session.close();
-//        }
-//        return;
-//    }
-//
-//    public void deleteAbilitate(long idAbilitate) {
-//        Session session = HibernateUtil.getSessionFactory().openSession();
-//        Transaction transaction = null;
-//        Object abil = session.load(Abilitate.class, idAbilitate);
-//        try {
-//            transaction = session.beginTransaction();
-//            session.delete(abil);
-//            transaction.commit();
-//        } catch (HibernateException e) {
-//            transaction.rollback();
-//            e.printStackTrace();
-//        } finally {
-//            session.close();
-//        }
-//        return;
-//    }
+    public void insertAbilitate(AbilitateBean abilitateBean) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
+        System.out.println("numele este "+abilitateBean.getName());
+        try {
+            transaction = session.beginTransaction();
+            Abilitate abil = new Abilitate();
+            abil.setNumeAbilitate(abilitateBean.getName());
+            session.save(abil);
+            transaction.commit();
+
+        } catch (HibernateException e) {
+            transaction.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+
     public void updateAbilitate(AbilitateBean bean) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
@@ -95,32 +98,31 @@ public class AbilitateDAO {
         } finally {
             session.close();
         }
-        return;
     }
 
-    public void fillAbilityBean(AbilitateBean bean) {
+    public void deleteAbilitate(AbilitateBean bean) {
         Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
 
         try {
-            Long idAbility = bean.getId();
+            transaction = session.beginTransaction();
 
-            if (idAbility != null) {
-                Abilitate abil = (Abilitate) session.get(Abilitate.class, idAbility);
-                
-                bean.setName(abil.getNumeAbilitate());
+            Long idAbilitate = bean.getId();
+            System.out.println("idAbilitate=" + idAbilitate);
+
+            if (idAbilitate != null) {
+                Abilitate abil = (Abilitate) session.get(Abilitate.class, idAbilitate);
+                session.delete(abil);
+                transaction.commit();
             } else {
-                bean.setAbilities(getAllAbilities());
+                LOG.error("No abilitate id!");
             }
+
         } catch (HibernateException e) {
+            transaction.rollback();
             e.printStackTrace();
         } finally {
             session.close();
         }
-
-
-
-        return;
-
-
     }
 }
