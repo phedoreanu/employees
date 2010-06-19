@@ -9,8 +9,6 @@
 <html>
     <head>
         <title>Admin</title>
-        <link rel="stylesheet" type="text/css" href="../css/cssverticalmenu.css"/>
-        <script type="text/javascript" src="../javascript/cssverticalmenu.js"></script>
     </head>
 
     <body>
@@ -21,8 +19,6 @@
                 </td>
                 <td>
                     <h1>Change the password of your acount!</h1>
-
-                    
                 </td>
         </table>
 

@@ -29,7 +29,7 @@ public class AbilitateController implements Serializable {
     public String updateAbilitate() {
         AbilitateBean abilitateBean = (AbilitateBean) FacesUtil.getBeanByName("abilitateBean");
         abilitateDAO.updateAbilitate(abilitateBean);
-        return "adminList";
+        return "afterInsert";
     }
 
     public String deleteAbilitate() {
