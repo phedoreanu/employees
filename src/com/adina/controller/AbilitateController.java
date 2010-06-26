@@ -35,7 +35,7 @@ public class AbilitateController implements Serializable {
     public String deleteAbilitate() {
         AbilitateBean abilitateBean = (AbilitateBean) FacesUtil.getBeanByName("abilitateBean");
         abilitateDAO.deleteAbilitate(abilitateBean);
-        return "adminList";
+        return "afterInsert";
     }
 
     public String insertAbilitate() {

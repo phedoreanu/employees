@@ -4,10 +4,11 @@ package com.adina.bean;
 import com.adina.controller.LocMuncaAnteriorController;
 import com.adina.util.FacesUtil;
 import com.adina.vo.LocMuncaAnteriorVO;
+import java.io.Serializable;
 import java.util.List;
 import javax.transaction.SystemException;
 
-public class LocMuncaAnteriorBean {
+public class LocMuncaAnteriorBean implements Serializable{
     private Long id;
     private String name;
     private List<LocMuncaAnteriorVO> workPlaceList;

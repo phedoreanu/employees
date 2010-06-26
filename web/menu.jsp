@@ -24,29 +24,22 @@
                 <ul>
                     <li><a href="http://localhost:8084/employees/admin/abilitate/abilitiesList.jsf">Abilities</a></li>
                     <li><a href="http://localhost:8084/employees/admin/previousWorkPlace/workPlaceList.jsf">Previous work places</a></li>
-                    <li><a href="">Posititions</a></li>
-                    <li><a href="">Salary class</a></li>
-                    <li><a href="">Holiday class</a></li>
-                    <li><a href="">Create employee account</a></li>
+                    <li><a href="http://localhost:8084/employees/admin/position/positionList.jsf">Posititions</a></li>
+                    <li><a href="http://localhost:8084/employees/admin/salaryClass/salaryClassList.jsf">Salary class</a></li>
+                    <li><a href="http://localhost:8084/employees/admin/holidayClass/holidayClassList.jsf">Holiday class</a></li>
+                    <li><a href="http://localhost:8084/employees/admin/employeeAccount/usersList.jsf">Create employee account</a></li>
                     <li><a href="">Employee management</a></li>
                 </ul>
             </li>
             <li><a href="#">View Reports</a>
-                <ul>
-                    <li><a href="http://www.dynamicdrive.com">Dynamic HTML</a></li>
-                    <li><a href="http://www.codingforums.com">Coding Forums</a></li>
-                    <li><a href="http://www.cssdrive.com">CSS Drive</a></li>
-                    <li><a href="http://www.dynamicdrive.com/style/">CSS Library</a></li>
-                    <li><a href="http://tools.dynamicdrive.com/imageoptimizer/">Image Optimizer</a></li>
-                    <li><a href="http://tools.dynamicdrive.com/favicon/">Favicon Generator</a></li>
-                </ul>
+                
             </li>
             <li><a href="">View Diagrams</a></li>
             <li><a href="changePassword.jsf" >Change password</a></li>
             <%
                         if (isAdmin) {
             %>
-            <li><a href="#" >Test admmin</a></li>
+            <li><a href="#" >Test admin</a></li>
             <%}%>
         </ul>
     </body>

@@ -19,7 +19,12 @@
     <managed-bean>
         <managed-bean-name>userBean</managed-bean-name>
         <managed-bean-class>com.adina.bean.UserBean</managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+     <managed-bean>
+        <managed-bean-name>userController</managed-bean-name>
+        <managed-bean-class>com.adina.controller.UserController</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
 
     <managed-bean>
@@ -27,12 +32,44 @@
         <managed-bean-class>com.adina.bean.LocMuncaAnteriorBean</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
-     <managed-bean>
+    <managed-bean>
         <managed-bean-name>locMuncaAnteriorController</managed-bean-name>
         <managed-bean-class>com.adina.controller.LocMuncaAnteriorController</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
 
+    <managed-bean>
+        <managed-bean-name>clasaConcediuBean</managed-bean-name>
+        <managed-bean-class>com.adina.bean.ClasaConcediuBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>clasaConcediuController</managed-bean-name>
+        <managed-bean-class>com.adina.controller.ClasaConcediuController</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>clasaSalariuBean</managed-bean-name>
+        <managed-bean-class>com.adina.bean.ClasaSalariuBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>clasaSalariuController</managed-bean-name>
+        <managed-bean-class>com.adina.controller.ClasaSalariuController</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>functieBean</managed-bean-name>
+        <managed-bean-class>com.adina.bean.FunctieBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>functieController</managed-bean-name>
+        <managed-bean-class>com.adina.controller.FunctieController</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
 
     <navigation-rule>
         <navigation-case>
@@ -47,5 +84,47 @@
             <to-view-id>/admin/abilitate/afterInsert.jsp</to-view-id>
         </navigation-case>
     </navigation-rule>
-    
+
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>afterWorkPlaceOperations</from-outcome>
+            <to-view-id>/admin/previousWorkPlace/afterInsert.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>afterHolidayOperation</from-outcome>
+            <to-view-id>/admin/holidayClass/afterOperations.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>afterSalaryOperations</from-outcome>
+            <to-view-id>/admin/salaryClass/afterOperations.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>afterPositionOperations</from-outcome>
+            <to-view-id>/admin/position/afterOperations.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+     <navigation-rule>
+        <navigation-case>
+            <from-outcome>afterAccountOperations</from-outcome>
+            <to-view-id>/admin/employeeAccount/afterOperations.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>afterAdminUpdate</from-outcome>
+            <to-view-id>/admin/index.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
 </faces-config>
