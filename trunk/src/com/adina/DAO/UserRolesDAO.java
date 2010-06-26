@@ -7,6 +7,7 @@ import com.adina.util.HibernateUtil;
 import com.adina.vo.UserRolesVO;
 import java.util.List;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -22,6 +23,7 @@ public class UserRolesDAO {
         try {
             transaction = session.beginTransaction();
             userRolesList = session.createQuery("select new com.adina.vo.UserRolesVO(id, username, role) from UserRoles").list();
+            System.out.println("userRolesList= " + userRolesList);
             transaction.commit();
         } catch (HibernateException e) {
             transaction.rollback();
@@ -39,7 +41,7 @@ public class UserRolesDAO {
             transaction = session.beginTransaction();
             UserRoles userRoles = new UserRoles();
             userRoles.setUsername(bean.getUsername());
-            userRoles.setRole("employee");
+            userRoles.setRole(bean.getUserRole());
             session.save(userRoles);
             transaction.commit();
         } catch (HibernateException e) {
@@ -50,17 +52,23 @@ public class UserRolesDAO {
         }
     }
 
-    public void updateRole(UserRolesVO urVo, UserBean bean) {
+    public void updateRole(UserBean bean) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            Integer id = urVo.getId();
+            Long id = bean.getId();
             if (id != null) {
-                UserRoles ur = (UserRoles) session.get(UserRoles.class, id);
-                ur.setUsername(bean.getUsername());
-                ur.setRole("employee");
-                session.update(ur);
+                Query userRoleQuery = session.createQuery("select ur from UserRoles ur, Users u"
+                        + " where u.id = :userId"
+                        + " and u.username = ur.username");
+                userRoleQuery.setLong("userId", id);
+
+                UserRoles userRole = (UserRoles) userRoleQuery.uniqueResult();
+                userRole.setUsername(bean.getUsername());
+                userRole.setRole(bean.getUserRole());
+
+                session.update(userRole);
                 transaction.commit();
             }
         } catch (HibernateException e) {

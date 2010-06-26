@@ -27,6 +27,14 @@
                             <br>
                             <h:outputText value="New password"/>&nbsp;&nbsp;
                             <h:inputText value="#{userBean.password}" />
+                            <br>
+                            <h:outputText value="Current role:"/>&nbsp;&nbsp;
+                            <h:inputText value="#{userBean.userRole}" />
+                            <br>
+                            <h:outputText value="Roles:"/>&nbsp;&nbsp;
+                            <h:selectOneListbox size="1">
+                                <f:selectItems value="#{userBean.roles}"/>
+                            </h:selectOneListbox>
 
                             <h:commandButton action="#{userController.updateAccount}" value="Update"/>
                             <br><br>

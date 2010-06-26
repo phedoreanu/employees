@@ -11,7 +11,9 @@ import org.hibernate.Transaction;
 import com.adina.objects.Users;
 import com.adina.util.HibernateUtil;
 import com.adina.vo.UserVO;
+import javax.faces.model.SelectItem;
 import org.apache.log4j.Logger;
+import org.hibernate.Query;
 
 public class UserDAO {
 
@@ -22,11 +24,35 @@ public class UserDAO {
         try {
             Long id = bean.getId();
             if (id != null) {
-                Users user = (Users) session.get(Users.class, id);
-                bean.setUsername(user.getUsername());
-                bean.setPassword(user.getPassword());
+                Query userQuery = session.createQuery("select u.username, u.password, ur.role from Users u, UserRoles ur "
+                        + "where u.username = ur.username "
+                        + "and u.id = :userId");
+                userQuery.setLong("userId", id);
+
+                List<Object[]> results = userQuery.list();
+                if (!results.isEmpty()) {
+                    String username = (String) results.get(0)[0];
+                    String password = (String) results.get(0)[1];
+                    String role = (String) results.get(0)[2];
+                    bean.setUsername(username);
+                    bean.setPassword(password);
+                    bean.setUserRole(role);
+                }
             } else {
                 bean.setUsers(getAllUsers());
+            }
+            
+            Query rolesQuery = session.createQuery("select distinct role from UserRoles");
+            List<String> roles = rolesQuery.list();
+
+            if (!roles.isEmpty()) {
+                for (String r : roles) {
+
+                    Double randomId = Math.random() * 1000;
+                    Long idRole = randomId.longValue();
+                    SelectItem si = new SelectItem(idRole.toString(), r);
+                    bean.getRoles().add(si);
+                }
             }
         } catch (HibernateException e) {
             e.printStackTrace();
@@ -58,6 +84,8 @@ public class UserDAO {
         try {
             transaction = session.beginTransaction();
             Users u = new Users();
+            String userRole = bean.getUserRole();
+            System.out.println("userRole=" + userRole);
             u.setUsername(bean.getUsername());
             u.setPassword(bean.getPassword());
             session.save(u);

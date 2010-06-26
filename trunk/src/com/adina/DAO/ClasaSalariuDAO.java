@@ -22,6 +22,7 @@ public class ClasaSalariuDAO {
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
             Long id = bean.getId();
+            System.out.println("ID=" + id);
             if (id != null) {
                 ClasaSalariu clsSalariu = (ClasaSalariu) session.get(ClasaSalariu.class, id);
                 clsSalariu.setNrClasa(bean.getNrClasa());
@@ -71,12 +72,12 @@ public class ClasaSalariuDAO {
         return;
     }
 
-    public void deleteClasaSalariu(ClasaSalariuBean bean) {
+    public void deleteClasaSalariu(Long id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            Long id = bean.getId();
+            System.out.println("id=" + id);
             if (id != null) {
                 ClasaSalariu clsSalariu = (ClasaSalariu) session.get(ClasaSalariu.class, id);
                 session.delete(clsSalariu);
