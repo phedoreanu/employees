@@ -7,7 +7,6 @@ import com.adina.vo.LocMuncaAnteriorVO;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.logging.Level;
 
 import javax.persistence.RollbackException;
 import javax.transaction.HeuristicMixedException;
@@ -39,18 +38,18 @@ public class LocMuncaAnteriorController implements Serializable {
     public String insertWorkPlace() throws IllegalStateException, SystemException, HeuristicRollbackException, javax.transaction.RollbackException, HeuristicMixedException {
         LocMuncaAnteriorBean bean = (LocMuncaAnteriorBean) FacesUtil.getBeanByName("locMuncaAnteriorBean");
         workPlaceDAO.insertWorkPlace(bean);
-        return "workPlaceList";
+        return "afterWorkPlaceOperations";
     }
 
     public String updateWorkPlace() throws IllegalStateException, javax.transaction.RollbackException, SystemException, HeuristicRollbackException, HeuristicMixedException {
         LocMuncaAnteriorBean bean = (LocMuncaAnteriorBean) FacesUtil.getBeanByName("locMuncaAnteriorBean");
         workPlaceDAO.updateWorkPlace(bean);
-        return "workPlaceList";
+        return "afterWorkPlaceOperations";
     }
 
     public String deleteWorkPlace() throws IllegalStateException, javax.transaction.RollbackException, SystemException, HeuristicRollbackException, HeuristicMixedException {
         LocMuncaAnteriorBean bean = (LocMuncaAnteriorBean) FacesUtil.getBeanByName("locMuncaAnteriorBean");
         workPlaceDAO.deleteWorkPlace(bean);
-        return "workPlaceList";
+        return "afterWorkPlaceOperations";
     }
 }

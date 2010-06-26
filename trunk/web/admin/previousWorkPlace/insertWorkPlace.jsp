@@ -3,7 +3,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-   "http://www.w3.org/TR/html4/loose.dtd">
+    "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
     <head>
@@ -11,15 +11,24 @@
         <title>New work place</title>
     </head>
     <f:view>
-    <body>
-         <h:form>
+        <body>
+            <table>
+                <tr>
+                    <td>
+                        <%@include file="../../menu.jsp" %>
+                    </td>
+                    <td>
+                        <h:form>
 
-                <h:outputText value="New work place"/>&nbsp;&nbsp;
-                <h:inputText value="#{locMuncaAnteriorBean.name}" />&nbsp;&nbsp
+                            <h:outputText value="New work place"/>&nbsp;&nbsp;
+                            <h:inputText value="#{locMuncaAnteriorBean.name}" />&nbsp;&nbsp
 
-                <h:commandButton action="#{locMuncaAnteriorController.insertWorkPlace}" value="Insert"/>
+                            <h:commandButton action="#{locMuncaAnteriorController.insertWorkPlace}" value="Insert"/>
 
-            </h:form>
-    </body>
+                        </h:form>
+                    </td>
+                </tr>
+            </table>
+        </body>
     </f:view>
 </html>

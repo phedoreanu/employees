@@ -9,8 +9,6 @@
 <html>
     <head>
         <title>Work Place Record</title>
-        <link rel="stylesheet" type="text/css" href="../../css/cssverticalmenu.css"/>
-        <script type="text/javascript" src="../../javascript/cssverticalmenu.js"></script>
     </head>
 
     <body>
@@ -20,20 +18,22 @@
                     <%@include file="../../menu.jsp" %>
                 </td>
                 <td>
-                    <h:form>
-                        <t:saveState value="#{locMuncaAnteriorBean}"></t:saveState>
+                    <f:view>
+                        <h:form>
+                            <t:saveState value="#{locMuncaAnteriorBean}"/>
 
-                        <h:outputText value="New work place name"/>&nbsp;&nbsp;
-                        <h:inputText value="#{locMuncaAnteriorBean.name}" />
+                            <h:outputText value="New work place name"/>&nbsp;&nbsp;
+                            <h:inputText value="#{locMuncaAnteriorBean.name}" />
 
-                        <h:commandButton action="#{locMuncaAnteriorController.updateWorkPlace}" value="Update"/>
+                            <h:commandButton action="#{locMuncaAnteriorController.updateWorkPlace}" value="Update"/>
                             <br><br>
                             <h:outputText value="If you wish to delete this work place click "/>&nbsp;
                             <h:commandLink action="#{locMuncaAnteriorController.deleteWorkPlace}">
                                 <h:outputText value="here"/>
                             </h:commandLink>
 
-                    </h:form>
+                        </h:form>
+                    </f:view>
                 </td>
             </tr>
         </table>

@@ -1,5 +1,7 @@
 package com.adina.DAO;
 
+import com.adina.bean.FunctieBean;
+import com.adina.controller.FunctieController;
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -8,83 +10,110 @@ import org.hibernate.Transaction;
 
 import com.adina.objects.Functie;
 import com.adina.util.HibernateUtil;
-
+import com.adina.vo.FunctieVO;
+import org.apache.log4j.Logger;
 
 public class FunctieDAO {
 
-	@SuppressWarnings("unchecked")
-	public List<Functie> getAllFunctie(){
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		Transaction transaction = null;
-		List<Functie> listFunctie=null;
-		try {
-			transaction = session.beginTransaction();
-			listFunctie = session.createQuery("from Functie").list();
-			transaction.commit();
-		} catch (HibernateException e) {
-			transaction.rollback();
-			e.printStackTrace();
-		}
-		finally{
-			session.close();
-		}
-	   return listFunctie;
-	}
-	
-	public void insertFunctie(String numeFunctie) {
-		
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		Transaction transaction = null;
-		Functie f=new Functie();
-		f.setNumeFunctie(numeFunctie);
-		try {
-			transaction = session.beginTransaction();
-			session.save(f);
-			transaction.commit();
-		} catch (HibernateException e) {
-			transaction.rollback();
-			e.printStackTrace();
-		}
-		finally{
-			session.close();
-		}
-		return;
-	}
-	
-	public void deleteFunctie(long idFunctie){
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		Transaction transaction = null;
-		Object fct=session.load(Functie.class, idFunctie);
-		try {
-			transaction = session.beginTransaction();
-			session.delete(fct);
-			transaction.commit();
-		} catch (HibernateException e) {
-			transaction.rollback();
-			e.printStackTrace();
-		}
-		finally{
-			session.close();
-		}
-		return;
-	}
-	
-	public void updateFunctie(long idFunctie, String numeFunctie){
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		Transaction transaction = null;
-		Functie fct=(Functie)session.load(Functie.class, idFunctie);
-		try {
-			transaction = session.beginTransaction();
-			fct.setNumeFunctie(numeFunctie);
-			session.update(fct);
-			transaction.commit();
-		} catch (HibernateException e) {
-			transaction.rollback();
-			e.printStackTrace();
-		}
-		finally{
-			session.close();
-		}
-		return;
-	}
+    private static final Logger LOG = Logger.getLogger(FunctieController.class);
+
+    public void fillPositionBean(FunctieBean bean) {
+         Session session = HibernateUtil.getSessionFactory().openSession();
+         try{
+             Long id = bean.getId();
+             if (id != null){
+                Functie fct = (Functie) session.get(Functie.class, id);
+                bean.setName(fct.getNumeFunctie());
+             }else{
+                 bean.setPositions(getAllFunctie());
+             }
+         }catch (HibernateException e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+
+    public List<FunctieVO> getAllFunctie() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
+        List<FunctieVO> listFunctie = null;
+        try {
+            transaction = session.beginTransaction();
+            listFunctie = session.createQuery("select new com.adina.vo.FunctieVO(idFunctie, numeFunctie) from Functie").list();
+            transaction.commit();
+        } catch (HibernateException e) {
+            transaction.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return listFunctie;
+    }
+
+    public void insertFunctie(FunctieBean bean) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
+
+        try {
+            transaction = session.beginTransaction();
+            Functie f = new Functie();
+            f.setNumeFunctie(bean.getName());
+            session.save(f);
+            transaction.commit();
+        } catch (HibernateException e) {
+            transaction.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return;
+    }
+
+    public void deleteFunctie(FunctieBean bean) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
+
+        try {
+            transaction = session.beginTransaction();
+            Long id = bean.getId();
+            if (id != null) {
+                Functie fct = (Functie) session.get(Functie.class, id);
+                session.delete(fct);
+                transaction.commit();
+            } else {
+                LOG.error("No position id!");
+            }
+        } catch (HibernateException e) {
+            transaction.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return;
+    }
+
+    public void updateFunctie(FunctieBean bean) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
+
+        try {
+            transaction = session.beginTransaction();
+            Long id = bean.getId();
+            if (id != null) {
+                Functie fct = (Functie) session.get(Functie.class, id);
+                fct.setNumeFunctie(bean.getName());
+                session.update(fct);
+                transaction.commit();
+            } else {
+                LOG.error("No position id!");
+            }
+        } catch (HibernateException e) {
+            transaction.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return;
+    }
 }

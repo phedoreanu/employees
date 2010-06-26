@@ -8,8 +8,6 @@
 <html>
     <head>
         <title>Previous work place</title>
-        <link rel="stylesheet" type="text/css" href="../../css/cssverticalmenu.css"/>
-        <script type="text/javascript" src="../../javascript/cssverticalmenu.js"></script>
     </head>
 
     <body>

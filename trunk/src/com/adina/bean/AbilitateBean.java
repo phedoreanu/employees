@@ -18,11 +18,9 @@ public class AbilitateBean implements Serializable {
             String id1 = FacesUtil.getRequestParameter("id");
             setId(Long.parseLong(id1));
         } catch (NumberFormatException nfe) {
-            //nfe.printStackTrace();
         }
 
         AbilitateController abilitateController = (AbilitateController) FacesUtil.getBeanByName("abilitateController");
-
         abilitateController.fillAbilityBean(this);
     }
 
