@@ -1,5 +1,6 @@
 <%@taglib uri="http://java.sun.com/jsf/core" prefix="f"%>
 <%@taglib uri="http://java.sun.com/jsf/html" prefix="h"%>
+<%@taglib uri="http://myfaces.apache.org/tomahawk" prefix="t" %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
@@ -19,6 +20,8 @@
                 <td>
                     <f:view>
                         <h:form>
+                            <t:saveState value="#{clasaSalariuBean}"/>
+
                             <h:dataTable border="1" value="#{clasaSalariuBean.clsSalariuList}" var="salaryClass">
                                 <h:column id="column1">
                                     <f:facet name="header">
@@ -38,7 +41,7 @@
                                     </f:facet>
                                     <h:commandLink action="#{clasaSalariuController.deleteClasaSalariu}">
                                         <h:outputText value="Delete"></h:outputText>
-                                        <f:param name="idCls" value="#{salaryClass.id}"></f:param>
+                                        <f:param name="idCls" id="idCls" value="#{salaryClass.id}"></f:param>
                                     </h:commandLink>
                                 </h:column>
                                 <f:facet name="footer">

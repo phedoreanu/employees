@@ -7,14 +7,19 @@ import java.util.List;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Map;
+import javax.faces.model.SelectItem;
 
 public class UserBean implements Serializable {
 
     private Long id;
+    private Long roleId;
     private String username;
     private String password;
+    private String userRole;
     private List<UserVO> users;
+    private List<SelectItem> roles;
 
     public UserBean() {
         try {
@@ -62,5 +67,31 @@ public class UserBean implements Serializable {
     public void setUsers(List<UserVO> users) {
         this.users = users;
     }
-    
+
+    public List<SelectItem> getRoles() {
+        if(roles == null) roles = new ArrayList<SelectItem>();
+        return roles;
+    }
+
+    public void setRoles(List<SelectItem> roles) {
+        this.roles = roles;
+    }
+
+    public String getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(String role) {
+        this.userRole = role;
+    }
+
+    public Long getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(Long roleId) {
+        this.roleId = roleId;
+    }
+
+
 }

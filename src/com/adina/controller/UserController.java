@@ -33,8 +33,8 @@ public class UserController implements Serializable {
 
     public String updateAccount() {
         UserBean bean = (UserBean) FacesUtil.getBeanByName("userBean");
+        userRolesDAO.updateRole(bean);
         userDAO.updateUser(bean);
-        userRolesDAO.updateRole(urVO, bean);
         return "afterAccountOperations";
     }
 

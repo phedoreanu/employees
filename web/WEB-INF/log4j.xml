@@ -4,7 +4,7 @@
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
 
     <appender name="employee_log" class="org.apache.log4j.FileAppender">
-        <param name="File" value="empoyees.log"/>
+        <param name="File" value="../logs/employees.log"/>
         <param name="Append" value="false"/>
 
         <layout class="org.apache.log4j.PatternLayout">

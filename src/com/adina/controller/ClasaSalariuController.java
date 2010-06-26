@@ -13,27 +13,30 @@ public class ClasaSalariuController implements Serializable {
     private static final Logger LOG = Logger.getLogger(ClasaSalariuController.class);
     private ClasaSalariuDAO clsSalariuDAO;
 
-    public ClasaSalariuController(){
+    public ClasaSalariuController() {
         clsSalariuDAO = new ClasaSalariuDAO();
     }
 
-    public void fillClasaSalariuBean(ClasaSalariuBean bean){
+    public void fillClasaSalariuBean(ClasaSalariuBean bean) {
         clsSalariuDAO.fillClasaSalariuBean(bean);
     }
 
-    public List<ClasaSalariuVO> getAllClasaSalariu(){
+    public List<ClasaSalariuVO> getAllClasaSalariu() {
         return clsSalariuDAO.getAllClasaSalariu();
     }
 
-    public String insertClasaSalariu(){
-        ClasaSalariuBean bean = (ClasaSalariuBean)FacesUtil.getBeanByName("clasaSalariuBean");
+    public String insertClasaSalariu() {
+        ClasaSalariuBean bean = (ClasaSalariuBean) FacesUtil.getBeanByName("clasaSalariuBean");
         clsSalariuDAO.insertClasaSalariu(bean);
         return "afterSalaryOperations";
     }
 
-    public String deleteClasaSalariu(){
-        ClasaSalariuBean bean = (ClasaSalariuBean)FacesUtil.getBeanByName("clasaSalariuBean");
-        clsSalariuDAO.deleteClasaSalariu(bean);
+    public String deleteClasaSalariu() {
+        ClasaSalariuBean bean = (ClasaSalariuBean) FacesUtil.getBeanByName("clasaSalariuBean");
+        String id1 = FacesUtil.getRequestParameter("idCls");
+        Long idXX = Long.parseLong(id1);
+        System.out.println("idXX= " + idXX);
+        clsSalariuDAO.deleteClasaSalariu(idXX);
         return "afterSalaryOperations";
     }
 }
