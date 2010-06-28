@@ -6,6 +6,9 @@ import com.adina.util.FacesUtil;
 import com.adina.vo.AbilitateVO;
 import java.io.Serializable;
 import java.util.List;
+import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
 
 import org.apache.log4j.Logger;
 
@@ -42,5 +45,18 @@ public class AbilitateController implements Serializable {
         AbilitateBean abilitateBean = (AbilitateBean) FacesUtil.getBeanByName("abilitateBean");
         abilitateDAO.insertAbilitate(abilitateBean);
         return "afterInsert";
+    }
+
+    public void validateAbilityDuplicates(FacesContext context, UIComponent toValidate, Object value) {
+        String message = "";
+        String abilityName = (String) value;
+        List<AbilitateVO> abilityList = getAllAbilities();
+        for (AbilitateVO al : abilityList) {
+            if (al.getName().equals(abilityName)) {
+                message = "Name duplicate! Please insert a different name!";
+                context.addMessage(toValidate.getClientId(context), new FacesMessage(message));
+                break;
+            }
+        }
     }
 }

@@ -66,4 +66,13 @@
         <param-name>org.apache.myfaces.ALLOW_JAVASCRIPT</param-name>
         <param-value>true</param-value>
     </context-param>
+	
+	 <servlet>
+        <servlet-name>ReportServlet</servlet-name>
+        <servlet-class>com.adina.reports.ReportServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ReportServlet</servlet-name>
+        <url-pattern>/Reports/*</url-pattern>
+    </servlet-mapping>
 </web-app>

@@ -7,6 +7,7 @@
 
 <html>
     <head>
+        <link rel="stylesheet" type="text/css" href="http://localhost:8084/employees/css/myStyle.css"/>
         <title>Ability</title>
     </head>
     <f:view>
@@ -17,12 +18,12 @@
                         <%@include file="../../menu.jsp" %>
                     </td>
                     <td>
-                        <h:form>
-
+                        <h:form id="abilityForm">
                             <h:outputText value="New ability"/>&nbsp;&nbsp;
-                            <h:inputText value="#{abilitateBean.name}" />&nbsp;&nbsp
+                            <h:inputText id="ability" value="#{abilitateBean.name}" required="true" requiredMessage="Fill ability textbox!"
+                                         validator="#{abilitateController.validateAbilityDuplicates}"/>&nbsp;&nbsp
                             <h:commandButton action="#{abilitateController.insertAbilitate}" value="Insert"/>
-
+                            <h:messages styleClass="messages"/>
                         </h:form>
                     </td>
                 </tr>
