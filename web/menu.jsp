@@ -12,13 +12,18 @@
     <head>
         <link rel="stylesheet" type="text/css" href="http://localhost:8084/employees/css/cssverticalmenu.css"/>
         <script type="text/javascript" src="http://localhost:8084/employees/javascript/cssverticalmenu.js"></script>
+        <script type="">
+            function openWindow(url, name, width, height, params)
+            {
+                var topWin = (screen.height - height)/2;
+                var leftWin = (screen.width - width)/2;
+                if(params && params.length != 0) params = ','+params;
+                return window.open(url, name,'width='+width+',height='+height+',top='+topWin+',left='+leftWin+',resizable=yes'+params);
+            }
+        </script>
     </head>
 
     <body onload="createcssmenu();">
-        <ul>
-            <li><%= request.getRemoteUser() %></li>
-            <li><a href="http://localhost:8084/employees/logout.jsf">logout</a></li>
-        </ul>
         <ul id="verticalmenu" class="glossymenu">
             <li><a href="#">Employees</a>
                 <ul>
@@ -32,7 +37,11 @@
                 </ul>
             </li>
             <li><a href="#">View Reports</a>
-                
+                <ul>
+                    <li><a href="#" onclick="openWindow('http://localhost:8084/employees/admin/abilitate/ability_report.jsf?reportTitle=raportAbility&reportName=ability', 'ability_repport', '1000', '800', 'scrollbars=yes,menubar=yes,resizable=yes');">
+                            Ability Report
+                        </a>
+                </ul>
             </li>
             <li><a href="">View Diagrams</a></li>
             <li><a href="changePassword.jsf" >Change password</a></li>

@@ -2,8 +2,8 @@
     list-style-type: none;
     margin: 0;
     padding: 0;
-    width: 185px; /*WIDTH OF MAIN MENU ITEMS*/
-    border: 1px solid black;
+    width: 200px;
+    border: 1px solid #8A877A;
 }
 
 .glossymenu li{
@@ -11,7 +11,7 @@
 }
 
 .glossymenu li a{
-    background: white url(../images/glossyback_1.gif) repeat-x bottom left;
+    background: white url(../images/glossy.gif) repeat-x bottom left;
     font: bold 12px Verdana, Helvetica, sans-serif;
     color: white;
     display: block;
@@ -48,7 +48,7 @@
 }
 
 .glossymenu li a:hover{
-    background-image: url(../images/glossyback2_1.gif);
+    background-image: url(../images/glossy2.gif);
 }
 
 /* Holly Hack for IE \*/
