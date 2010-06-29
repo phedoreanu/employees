@@ -54,15 +54,15 @@
                                             <br>
 
                                             <h:outputText value="Position"/>&nbsp;&nbsp;
-                                            <t:selectOneListbox id="positionId" size="1" value="#{functieBean.name}">
-                                                <t:selectItems value="#{functieBean.positions}" var="p" itemLabel="#{p.label}" itemValue="#{p.label}"/>
+                                            <t:selectOneListbox id="positionId" size="1" value="#{employeeBean.positionId}">
+                                                <t:selectItems value="#{employeeBean.positions}" var="p" itemLabel="#{p.label}" itemValue="#{p.value}"/>
                                             </t:selectOneListbox>
                                             <br>
 
-                                            <h:outputText value="Username"/>&nbsp;&nbsp;
+                                            <%--<h:outputText value="Username"/>&nbsp;&nbsp;
                                             <t:selectOneListbox id="userId" size="1" value="#{userBean.username}">
                                                 <t:selectItems value="#{userBean.users}" var="u" itemLabel="#{u.label}" itemValue="#{u.label}"/>
-                                            </t:selectOneListbox>
+                                            </t:selectOneListbox>--%>
                                             <br>
                                             <%--
                                             <h:outputText value="Salary Class"/>&nbsp;&nbsp;

@@ -4,12 +4,13 @@ import com.adina.controller.EmployeeController;
 import com.adina.util.FacesUtil;
 import com.adina.vo.EmployeeVO;
 import java.util.List;
+import javax.faces.model.SelectItem;
 
 public class EmployeeBean {
 
     private Long angajatId;
     private String name;
-    private Long functieId;
+    private Long positionId;
     private Long clasaConcediuId;
     private Long userId;
     private Long clasaSalariuId;
@@ -17,6 +18,7 @@ public class EmployeeBean {
     private String adresa;
     private byte activ;
     private List<EmployeeVO> employeesList;
+    private List<SelectItem> positions;
 
     public EmployeeBean() {
         try {
@@ -43,14 +45,6 @@ public class EmployeeBean {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Long getFunctieId() {
-        return functieId;
-    }
-
-    public void setFunctieId(Long functieId) {
-        this.functieId = functieId;
     }
 
     public Long getClasaConcediuId() {
@@ -107,5 +101,21 @@ public class EmployeeBean {
 
     public void setEmployeesList(List<EmployeeVO> employeesList) {
         this.employeesList = employeesList;
+    }
+
+    public Long getPositionId() {
+        return positionId;
+    }
+
+    public void setPositionId(Long positionId) {
+        this.positionId = positionId;
+    }
+
+    public List<SelectItem> getPositions() {
+        return positions;
+    }
+
+    public void setPositions(List<SelectItem> positions) {
+        this.positions = positions;
     }
 }

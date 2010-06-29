@@ -11,6 +11,7 @@ import org.hibernate.Transaction;
 import com.adina.objects.Functie;
 import com.adina.util.HibernateUtil;
 import com.adina.vo.FunctieVO;
+import javax.faces.model.SelectItem;
 import org.apache.log4j.Logger;
 
 public class FunctieDAO {
@@ -25,7 +26,7 @@ public class FunctieDAO {
                 Functie fct = (Functie) session.get(Functie.class, id);
                 bean.setName(fct.getNumeFunctie());
              }else{
-                 bean.setPositions(getAllFunctie());
+                 bean.setPositions(getAllPositions());
              }
          }catch (HibernateException e) {
             e.printStackTrace();
@@ -34,13 +35,30 @@ public class FunctieDAO {
         }
     }
 
-    public List<FunctieVO> getAllFunctie() {
+    public List<FunctieVO> getAllPositions() {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
         List<FunctieVO> listFunctie = null;
         try {
             transaction = session.beginTransaction();
             listFunctie = session.createQuery("select new com.adina.vo.FunctieVO(idFunctie, numeFunctie) from Functie").list();
+            transaction.commit();
+        } catch (HibernateException e) {
+            transaction.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return listFunctie;
+    }
+
+    public List<SelectItem> getAllPositionsAsSelectItems() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
+        List<SelectItem> listFunctie = null;
+        try {
+            transaction = session.beginTransaction();
+            listFunctie = session.createQuery("select new javax.faces.model.SelectItem(idFunctie, numeFunctie) from Functie").list();
             transaction.commit();
         } catch (HibernateException e) {
             transaction.rollback();

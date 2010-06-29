@@ -10,6 +10,7 @@ import com.adina.objects.Users;
 import com.adina.util.HibernateUtil;
 import com.adina.vo.EmployeeVO;
 import java.util.List;
+import javax.faces.model.SelectItem;
 import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -32,11 +33,15 @@ public class EmployeeDAO {
                 bean.setClasaConcediuId(employee.getClasaConcediu().getIdClasaConcediu());
                 bean.setClasaSalariuId(employee.getClasaSalariu().getIdClasaSalariu());
                 bean.setCnp(employee.getCnp());
-                bean.setFunctieId(employee.getFunctie().getIdFunctie());
+                bean.setPositionId(employee.getFunctie().getIdFunctie());
                 bean.setName(employee.getNume());
                 bean.setUserId(employee.getUsers().getIdUser());
             } else {
                 bean.setEmployeesList(getAllEmployees());
+
+                FunctieDAO functieDAO = new FunctieDAO();
+                List<SelectItem> positions = functieDAO.getAllPositionsAsSelectItems();
+                bean.setPositions(positions);
             }
         } catch (HibernateException e) {
             e.printStackTrace();
@@ -51,7 +56,8 @@ public class EmployeeDAO {
         List<EmployeeVO> employeesList = null;
         try {
             transaction = session.beginTransaction();
-            employeesList = session.createQuery("select new com.adina.vo.EmployeeVO(idAngajat, clasaConcediu, users, clasaSalariu, functie, nume, cnp, adresa, activ) from Angajat").list();
+
+            employeesList = session.createQuery("select new com.adina.vo.EmployeeVO(idAngajat, clasaConcediu.id, users.id, clasaSalariu.id, functie.id, nume, cnp, adresa, activ) from Angajat").list();
             transaction.commit();
         } catch (HibernateException e) {
             transaction.rollback();
@@ -74,18 +80,29 @@ public class EmployeeDAO {
             angajat.setActiv((byte) 0);
             angajat.setAdresa(bean.getAdresa());
             angajat.setCnp(bean.getCnp());
-            Functie functie = new Functie();
-            functie.setIdFunctie(bean.getFunctieId());
-            angajat.setFunctie(functie);
-            ClasaConcediu clsConcediu = new ClasaConcediu();
-            clsConcediu.setIdClasaConcediu(bean.getClasaConcediuId());
-            angajat.setClasaConcediu(clsConcediu);
-            ClasaSalariu clsSalariu = new ClasaSalariu();
-            clsSalariu.setIdClasaSalariu(bean.getClasaSalariuId());
-            angajat.setClasaSalariu(clsSalariu);
-            Users user = new Users();
-            user.setIdUser(bean.getUserId());
-            angajat.setUsers(user);
+            if (bean.getPositionId() != null) {
+                Functie functie = new Functie();
+                functie.setIdFunctie(bean.getPositionId());
+                angajat.setFunctie(functie);
+            }
+
+            if (bean.getClasaConcediuId() != null) {
+                ClasaConcediu clsConcediu = new ClasaConcediu();
+                clsConcediu.setIdClasaConcediu(bean.getClasaConcediuId());
+                angajat.setClasaConcediu(clsConcediu);
+            }
+
+            if (bean.getClasaSalariuId() != null) {
+                ClasaSalariu clsSalariu = new ClasaSalariu();
+                clsSalariu.setIdClasaSalariu(bean.getClasaSalariuId());
+                angajat.setClasaSalariu(clsSalariu);
+            }
+
+            if (bean.getUserId() != null) {
+                Users user = new Users();
+                user.setIdUser(bean.getUserId());
+                angajat.setUsers(user);
+            }
 
             session.save(angajat);
             transaction.commit();

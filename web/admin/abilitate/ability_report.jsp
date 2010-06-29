@@ -13,7 +13,7 @@
     </head>
 
     <body onLoad="javascript:document.getElementById('abilityId').submit();">
-        <form action="http://localhost:8084/employees/Reports/ability" id="abilityId" method="post" onsubmit="alert(document.getElementById('abilityId').action); return true;">
+        <form action="http://localhost:8084/employees/Reports" id="abilityId" method="post" onsubmit="alert(document.getElementById('abilityId').action); return true;">
               <input type="hidden" name="id" value="<%=idRapport%>">
             <input type="hidden" name="reportName" value="<%=reportName%>">
             <input type="hidden" name="reportTitle" value="<%=reportTitle%>">

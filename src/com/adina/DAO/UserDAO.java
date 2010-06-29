@@ -2,7 +2,9 @@ package com.adina.DAO;
 
 import com.adina.bean.UserBean;
 import com.adina.controller.UserController;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
+import java.util.logging.Level;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -10,6 +12,7 @@ import org.hibernate.Transaction;
 
 import com.adina.objects.Users;
 import com.adina.util.HibernateUtil;
+import com.adina.util.MD5Digest;
 import com.adina.vo.UserVO;
 import javax.faces.model.SelectItem;
 import org.apache.log4j.Logger;
@@ -41,7 +44,7 @@ public class UserDAO {
             } else {
                 bean.setUsers(getAllUsers());
             }
-            
+
             Query rolesQuery = session.createQuery("select distinct role from UserRoles");
             List<String> roles = rolesQuery.list();
 
@@ -87,7 +90,15 @@ public class UserDAO {
             String userRole = bean.getUserRole();
             System.out.println("userRole=" + userRole);
             u.setUsername(bean.getUsername());
-            u.setPassword(bean.getPassword());
+
+            String originalPassword = bean.getPassword();
+            try {
+                String md5Password = MD5Digest.encodePassword(originalPassword);
+                u.setPassword(md5Password);
+            } catch (NoSuchAlgorithmException ex) {
+                u.setPassword(originalPassword);
+            }
+
             session.save(u);
             transaction.commit();
         } catch (HibernateException e) {

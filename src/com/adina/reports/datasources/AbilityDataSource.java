@@ -27,7 +27,6 @@ public class AbilityDataSource implements JRDataSource {
 
     public AbilityDataSource(String title) {
         AbilitateBean bean = new AbilitateBean();
-        System.out.println("AbilityDataSourceXX=" + title);
         abilities = bean.getAbilities();
     }
 
@@ -40,8 +39,9 @@ public class AbilityDataSource implements JRDataSource {
     @Override
     public Object getFieldValue(JRField jrf) throws JRException {
         if ("abilitate_id_abilitate".equals(jrf.getName())) {
-//            return formBean.getNumeroDemande() != null ? formBean.getNumeroDemande() : "";
-            return "testId";
+            return abilities.get(index).getId();
+        } else if ("abilitate_nume_abilitate".equals(jrf.getName())) {
+            return abilities.get(index).getName();
         } else {
             return null;
         }
