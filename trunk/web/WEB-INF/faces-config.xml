@@ -71,6 +71,17 @@
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
 
+    <managed-bean>
+        <managed-bean-name>employeeBean</managed-bean-name>
+        <managed-bean-class>com.adina.bean.EmployeeBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>employeeController</managed-bean-name>
+        <managed-bean-class>com.adina.controller.EmployeeController</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
     <navigation-rule>
         <navigation-case>
             <from-outcome>adminList</from-outcome>
@@ -124,6 +135,13 @@
         <navigation-case>
             <from-outcome>afterAdminUpdate</from-outcome>
             <to-view-id>/admin/index.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>afterEmployeeOperations</from-outcome>
+            <to-view-id>/admin/employee/afterOperations.jsp</to-view-id>
         </navigation-case>
     </navigation-rule>
 

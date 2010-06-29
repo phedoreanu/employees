@@ -22,6 +22,7 @@ public class ClasaConcediuDAO {
 
         try {
             Long id = bean.getId();
+            System.out.println("IDClasaConcediu=" + id);
             if (id != null) {
                 ClasaConcediu clsConcediu = (ClasaConcediu) session.get(ClasaConcediu.class, id);
                 bean.setNrClasa(clsConcediu.getNrClasa());
@@ -70,16 +71,15 @@ public class ClasaConcediuDAO {
         }
     }
 
-    public void deleteClasaConcediu(ClasaConcediuBean bean) {
+    public void deleteClasaConcediu(Long idXX) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
 
         try {
             transaction = session.beginTransaction();
-            Long id = bean.getId();
-            System.out.println("idClasaConcediu=" + id);
-            if (id != null) {
-                ClasaConcediu clsConcediu = (ClasaConcediu) session.get(ClasaConcediu.class, id);
+            System.out.print("idClasaConcediu= "+idXX);
+            if (idXX != null) {
+                ClasaConcediu clsConcediu = (ClasaConcediu) session.get(ClasaConcediu.class, idXX);
                 session.delete(clsConcediu);
                 transaction.commit();
             }else{

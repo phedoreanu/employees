@@ -8,6 +8,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="http://localhost:8084/employees/css/style.css"/>
         <title>New work place</title>
     </head>
     <f:view>
@@ -21,10 +22,10 @@
                         <h:form>
 
                             <h:outputText value="New work place"/>&nbsp;&nbsp;
-                            <h:inputText value="#{locMuncaAnteriorBean.name}" />&nbsp;&nbsp
+                            <h:inputText value="#{locMuncaAnteriorBean.name}" required="true" requiredMessage="Fill previous work place textbox!"/>&nbsp;&nbsp
 
                             <h:commandButton action="#{locMuncaAnteriorController.insertWorkPlace}" value="Insert"/>
-
+                            <h:messages styleClass="messages"/>
                         </h:form>
                     </td>
                 </tr>

@@ -23,8 +23,6 @@ public class UserBean implements Serializable {
 
     public UserBean() {
         try {
-            //String id1 = FacesUtil.getRequestParameter("id");
-            //setId(Long.parseLong(id1));
             Map<String, String> params=FacesUtil.getRequestParameters();
             Long id1=Long.parseLong(params.get("id"));
             setId(id1);
@@ -33,7 +31,7 @@ public class UserBean implements Serializable {
         } catch (NumberFormatException nfe) {
         }
         UserController userController = (UserController) FacesUtil.getBeanByName("userController");
-        userController.fillPositionBean(this);
+        userController.fillUserBean(this);
     }
 
     public Long getId() {

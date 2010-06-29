@@ -8,6 +8,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="http://localhost:8084/employees/css/style.css"/>
         <title>New salary class</title>
     </head>
     <f:view>
@@ -18,13 +19,13 @@
                         <%@include file="../../menu.jsp" %>
                     </td>
                     <td>
-                        <h:form>
+                        <h:form id="salaryForm">
                             <h:outputText value="Please insert a number"></h:outputText><br>
                             <h:outputText value="New salary class"/>&nbsp;&nbsp;
-                            <h:inputText value="#{clasaSalariuBean.nrClasa}" />&nbsp;&nbsp
+                            <h:inputText id="salaryClass" value="#{clasaSalariuBean.nrClasa}"  required="true" requiredMessage="Fill salary class texbox!"/>&nbsp;&nbsp
 
                             <h:commandButton action="#{clasaSalariuController.insertClasaSalariu}" value="Insert"/>
-
+                            <h:message for="salaryClass" styleClass="messages"/>
                         </h:form>
                     </td>
                 </tr>

@@ -15,11 +15,50 @@
   limitations under the License.
 -->
 <html>
-<head>
-<title>Error Page</title>
-</head>
-<body bgcolor="white">
-Invalid username and/or password, please try
-<a href='<%= response.encodeURL("index.jsp") %>'>again</a>.
-</body>
+    <head>
+        <link rel="stylesheet" type="text/css" href="http://localhost:8084/employees/css/style.css"/>
+        <title>Error Page</title>
+    </head>
+    <body>
+
+        <div id="wrapper">
+            <div id="header">
+                <div id="logo">
+                    <h1><a href="#">Employees</a></h1>
+                </div>
+
+            </div>
+            <div id="page">
+                <div id="page-bgtop">
+                    <div id="page-bgbtm">
+                        <div id="content">
+                            <div class="post">
+                                <h2 class="title"><a href="#">Error page</a></h2>
+                                <p class="meta">
+
+                                    <%@include file="currentDate.jsp" %>
+
+                                </p>
+                                <div style="clear: both;">&nbsp;</div>
+                                <div class="entry">
+
+                                    Invalid username and/or password, please try
+                                    <a href='<%= response.encodeURL("index.jsp")%>'>again</a>.
+
+                                    <p class="links"><a href="http://localhost:8084/employees/about.jsp">About</a></p>
+                                </div>
+                            </div>
+                            <div style="clear: both;">&nbsp;</div>
+                        </div>
+
+                        <div style="clear: both;">&nbsp;</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="footer">
+            <p>Copyright &copy;  2010  All rights reserved.</p>
+        </div>
+    </body>
 </html>

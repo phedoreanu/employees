@@ -32,8 +32,11 @@ public class ClasaConcediuController implements Serializable {
     }
 
     public String deleteClasaConcediu(){
-        ClasaConcediuBean bean = (ClasaConcediuBean) FacesUtil.getBeanByName("clasaConcediuBean");
-        clasaConcediuDAO.deleteClasaConcediu(bean);
+        String id1 = FacesUtil.getRequestParameter("idCls");
+        Long idXX = Long.parseLong(id1);
+        System.out.println("idClasaConcediu= " + idXX);
+        clasaConcediuDAO.deleteClasaConcediu(idXX);
         return "afterHolidayOperation";
     }
+
 }

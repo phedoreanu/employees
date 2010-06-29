@@ -32,8 +32,8 @@
                     <li><a href="http://localhost:8084/employees/admin/position/positionList.jsf">Posititions</a></li>
                     <li><a href="http://localhost:8084/employees/admin/salaryClass/salaryClassList.jsf">Salary class</a></li>
                     <li><a href="http://localhost:8084/employees/admin/holidayClass/holidayClassList.jsf">Holiday class</a></li>
-                    <li><a href="http://localhost:8084/employees/admin/employeeAccount/usersList.jsf">Create employee account</a></li>
-                    <li><a href="">Employee management</a></li>
+                    <li><a href="http://localhost:8084/employees/admin/employeeAccount/usersList.jsf">Employee account</a></li>
+                    <li><a href="http://localhost:8084/employees/admin/employee/employeesList.jsf">Employee management</a></li>
                 </ul>
             </li>
             <li><a href="#">View Reports</a>
