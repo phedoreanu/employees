@@ -9,6 +9,7 @@
 <html>
     <head>
         <title>Work Place Record</title>
+        <link rel="stylesheet" type="text/css" href="http://localhost:8084/employees/css/style.css"/>
     </head>
 
     <body>
@@ -23,10 +24,12 @@
                             <t:saveState value="#{locMuncaAnteriorBean}"/>
 
                             <h:outputText value="New work place name"/>&nbsp;&nbsp;
-                            <h:inputText value="#{locMuncaAnteriorBean.name}" />
+                            <h:inputText value="#{locMuncaAnteriorBean.name}" required="true" requiredMessage="Fill previous work place textbox!"/>
 
                             <h:commandButton action="#{locMuncaAnteriorController.updateWorkPlace}" value="Update"/>
                             <br><br>
+                            <h:messages styleClass="messages"/>
+
                             <h:outputText value="If you wish to delete this work place click "/>&nbsp;
                             <h:commandLink action="#{locMuncaAnteriorController.deleteWorkPlace}">
                                 <h:outputText value="here"/>

@@ -8,6 +8,7 @@
 
 <html>
     <head>
+        <link rel="stylesheet" type="text/css" href="http://localhost:8084/employees/css/style.css"/>
         <title>Account Record</title>
     </head>
 
@@ -23,21 +24,28 @@
                             <t:saveState value="#{userBean}"/>
 
                             <h:outputText value="New username"/>&nbsp;&nbsp;
-                            <h:inputText value="#{userBean.username}" />
+                            <h:inputText id="username" value="#{userBean.username}" required="true" requiredMessage="Fill username textbox!"/>
+                            <h:message for="username" styleClass="messages"/>
                             <br>
+
                             <h:outputText value="New password"/>&nbsp;&nbsp;
-                            <h:inputText value="#{userBean.password}" />
+                            <h:inputText id="password" value="#{userBean.password}" required="true" requiredMessage="Fill password textbox!">
+                                <f:validateLength  minimum="5"/>
+                            </h:inputText>
+                            <h:message for="password" styleClass="messages"/>
                             <br>
+
                             <h:outputText value="Current role:"/>&nbsp;&nbsp;
-                            <h:inputText value="#{userBean.userRole}" />
+                            <h:outputText value="#{userBean.userRole}" />
                             <br>
                             <h:outputText value="Roles:"/>&nbsp;&nbsp;
-                            <h:selectOneListbox size="1">
-                                <f:selectItems value="#{userBean.roles}"/>
-                            </h:selectOneListbox>
+                             <t:selectOneListbox id="roleId" size="1" value="#{userBean.userRole}">
+                                 <t:selectItems value="#{userBean.roles}" var="role" itemLabel="#{role.label}" itemValue="#{role.label}"/>
+                            </t:selectOneListbox>
 
                             <h:commandButton action="#{userController.updateAccount}" value="Update"/>
                             <br><br>
+
                             <h:outputText value="If you wish to delete this account click "/>&nbsp;
                             <h:commandLink action="#{userController.deleteAccount}">
                                 <h:outputText value="here"/>

@@ -1,21 +1,20 @@
-<?xml version="1.0"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated Jun 16, 2010 7:13:39 PM by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-    <class name="com.adina.objects.Abilitate" table="abilitate" catalog="employees">
-        <id name="idAbilitate" type="java.lang.Long">
-            <column name="id_abilitate" />
-            <generator class="identity" />
-        </id>
-        <property name="numeAbilitate" type="string">
-            <column name="nume_abilitate" length="50" not-null="true" />
-        </property>
-        <set name="angajatAbilitates" inverse="true">
-            <key>
-                <column name="id_abilitate" />
-            </key>
-            <one-to-many class="com.adina.objects.AngajatAbilitate" />
-        </set>
-    </class>
+  <class catalog="employees" name="com.adina.objects.Abilitate" table="abilitate">
+    <id name="idAbilitate" type="java.lang.Long">
+      <column name="id_abilitate"/>
+      <generator class="identity"/>
+    </id>
+    <property name="numeAbilitate" type="string">
+      <column length="50" name="nume_abilitate" not-null="true"/>
+    </property>
+    <set inverse="true" name="angajatAbilitates">
+      <key>
+        <column name="id_abilitate"/>
+      </key>
+      <one-to-many class="com.adina.objects.AngajatAbilitate"/>
+    </set>
+  </class>
 </hibernate-mapping>

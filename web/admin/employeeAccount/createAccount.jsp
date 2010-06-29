@@ -9,6 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="http://localhost:8084/employees/css/style.css"/>
         <title>New account</title>
     </head>
     <f:view>
@@ -20,21 +21,23 @@
                     </td>
                     <td>
                         <h:form id="newUserForm">
-                            <h:messages showDetail="true" showSummary="true"/>
-                            
+
                             <h:outputText value="New username"/>&nbsp;&nbsp;
-                            <h:inputText value="#{userBean.username}" required="true" requiredMessage="Fill!" />&nbsp;&nbsp
+                            <h:inputText id="username" value="#{userBean.username}" required="true" requiredMessage="Fill username textbox!" />&nbsp;&nbsp
+                            <h:message for="username" styleClass="messages"/>
                             <br>
+
                             <h:outputText value="New password"/>&nbsp;&nbsp;
-                            <h:inputText value="#{userBean.password}" />&nbsp;&nbsp
+                            <h:inputText id="password" value="#{userBean.password}" required="true" requiredMessage="Fill password textbox!">
+                                <f:validateLength  minimum="5"/>
+                            </h:inputText> &nbsp;&nbsp
+                            <h:message for="password" styleClass="messages"/>
                             <br>
+
                             <h:outputText value="Roles:"/>&nbsp;&nbsp;
-                            <%--<h:selectOneListbox id="roleId" size="1" value="#{userBean.roleId}">--%>
                             <t:selectOneListbox id="roleId" size="1" value="#{userBean.userRole}">
                                 <t:selectItems value="#{userBean.roles}" var="role" itemLabel="#{role.label}" itemValue="#{role.label}"/>
                             </t:selectOneListbox>
-                            <%--</h:selectOneListbox>--%>
-
 
                             <h:commandButton action="#{userController.createAccount}" value="Create account"/>
 

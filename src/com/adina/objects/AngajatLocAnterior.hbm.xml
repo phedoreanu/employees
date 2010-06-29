@@ -1,24 +1,23 @@
-<?xml version="1.0"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated Jun 16, 2010 7:13:39 PM by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-    <class name="com.adina.objects.AngajatLocAnterior" table="angajat_loc_anterior" catalog="employees">
-        <id name="idAngajatLoc" type="java.lang.Long">
-            <column name="id_angajat_loc" />
-            <generator class="identity" />
-        </id>
-        <many-to-one name="angajat" class="com.adina.objects.Angajat" fetch="select">
-            <column name="id_angajat" />
-        </many-to-one>
-        <many-to-one name="locMuncaAnterior" class="com.adina.objects.LocMuncaAnterior" fetch="select">
-            <column name="id_loc_munca" />
-        </many-to-one>
-        <property name="dataAngajare" type="date">
-            <column name="data_angajare" length="10" />
-        </property>
-        <property name="dataPlecare" type="date">
-            <column name="data_plecare" length="10" />
-        </property>
-    </class>
+  <class catalog="employees" name="com.adina.objects.AngajatLocAnterior" table="angajat_loc_anterior">
+    <id name="idAngajatLoc" type="java.lang.Long">
+      <column name="id_angajat_loc"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="com.adina.objects.Angajat" fetch="select" name="angajat">
+      <column name="id_angajat"/>
+    </many-to-one>
+    <many-to-one class="com.adina.objects.LocMuncaAnterior" fetch="select" name="locMuncaAnterior">
+      <column name="id_loc_munca"/>
+    </many-to-one>
+    <property name="dataAngajare" type="date">
+      <column length="10" name="data_angajare"/>
+    </property>
+    <property name="dataPlecare" type="date">
+      <column length="10" name="data_plecare"/>
+    </property>
+  </class>
 </hibernate-mapping>

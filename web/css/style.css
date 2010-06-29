@@ -313,3 +313,10 @@ a:hover {
 #footer a {
     color: #464032;
 }
+
+/*Messages*/
+
+.messages{
+    color: #A7430F;
+    font-weight: bold;
+}

@@ -41,6 +41,7 @@ public class UserRolesDAO {
             transaction = session.beginTransaction();
             UserRoles userRoles = new UserRoles();
             userRoles.setUsername(bean.getUsername());
+            System.out.print("role in insert dao: " + bean.getUserRole());
             userRoles.setRole(bean.getUserRole());
             session.save(userRoles);
             transaction.commit();
@@ -66,6 +67,7 @@ public class UserRolesDAO {
 
                 UserRoles userRole = (UserRoles) userRoleQuery.uniqueResult();
                 userRole.setUsername(bean.getUsername());
+                System.out.print("role in update dao: " + bean.getUserRole());
                 userRole.setRole(bean.getUserRole());
 
                 session.update(userRole);
@@ -80,16 +82,21 @@ public class UserRolesDAO {
         return;
     }
 
-    public void deleteRole(UserRolesVO urVo) {
+    public void deleteUserRole(UserBean bean) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
-
         try {
             transaction = session.beginTransaction();
-            Integer id = urVo.getId();
+            Long id = bean.getId();
             if (id != null) {
-                UserRoles ur = (UserRoles) session.get(UserRoles.class, id);
-                session.delete(ur);
+                Query userRoleQuery = session.createQuery("select ur from UserRoles ur, Users u"
+                        + " where u.id = :userId"
+                        + " and u.username = ur.username");
+                userRoleQuery.setLong("userId", id);
+
+                UserRoles userRole = (UserRoles) userRoleQuery.uniqueResult();
+                session.delete(userRole);
+
                 transaction.commit();
             }
         } catch (HibernateException e) {
@@ -98,6 +105,5 @@ public class UserRolesDAO {
         } finally {
             session.close();
         }
-        return;
     }
 }

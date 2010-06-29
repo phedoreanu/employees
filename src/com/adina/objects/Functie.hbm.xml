@@ -1,21 +1,20 @@
-<?xml version="1.0"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated Jun 16, 2010 7:13:39 PM by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-    <class name="com.adina.objects.Functie" table="functie" catalog="employees">
-        <id name="idFunctie" type="java.lang.Long">
-            <column name="id_functie" />
-            <generator class="identity" />
-        </id>
-        <property name="numeFunctie" type="string">
-            <column name="nume_functie" length="30" not-null="true" />
-        </property>
-        <set name="angajats" inverse="true">
-            <key>
-                <column name="id_functie" />
-            </key>
-            <one-to-many class="com.adina.objects.Angajat" />
-        </set>
-    </class>
+  <class catalog="employees" name="com.adina.objects.Functie" table="functie">
+    <id name="idFunctie" type="java.lang.Long">
+      <column name="id_functie"/>
+      <generator class="identity"/>
+    </id>
+    <property name="numeFunctie" type="string">
+      <column length="30" name="nume_functie" not-null="true"/>
+    </property>
+    <set inverse="true" name="angajats">
+      <key>
+        <column name="id_functie"/>
+      </key>
+      <one-to-many class="com.adina.objects.Angajat"/>
+    </set>
+  </class>
 </hibernate-mapping>

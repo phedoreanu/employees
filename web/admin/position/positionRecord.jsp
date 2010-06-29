@@ -8,6 +8,7 @@
 
 <html>
     <head>
+        <link rel="stylesheet" type="text/css" href="http://localhost:8084/employees/css/style.css"/>
         <title>Position Record</title>
     </head>
 
@@ -23,10 +24,11 @@
                             <t:saveState value="#{functieBean}"/>
 
                             <h:outputText value="New position name"/>&nbsp;&nbsp;
-                            <h:inputText value="#{functieBean.name}" />
+                            <h:inputText value="#{functieBean.name}" required="true" requiredMessage="Fill position textbox!"/>
 
                             <h:commandButton action="#{functieController.updateFunctie}" value="Update"/>
                             <br><br>
+                            <h:messages styleClass="messages"/>
                             <h:outputText value="If you wish to delete this position click "/>&nbsp;
                             <h:commandLink action="#{functieController.deleteFunctie}">
                                 <h:outputText value="here"/>
