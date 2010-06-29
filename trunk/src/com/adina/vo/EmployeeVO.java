@@ -1,21 +1,30 @@
 package com.adina.vo;
 
+import com.adina.objects.ClasaConcediu;
+import com.adina.objects.ClasaSalariu;
+import com.adina.objects.Functie;
+import com.adina.objects.Users;
+
 public class EmployeeVO {
 
-    private Long idAngajat;
+    private Long angajatId;
     private String name;
-    private FunctieVO functie;
-    private ClasaConcediuVO clasaConcediu;
-    private UserVO user;
-    private ClasaSalariuVO clasaSalariu;
+    private Functie functie;
+    private ClasaConcediu clasaConcediu;
+    private Users user;
+    private ClasaSalariu clasaSalariu;
+    private Long functieId;
+    private Long clasaConcediuId;
+    private Long userId;
+    private Long clasaSalariuId;
     private String cnp;
     private String adresa;
     private byte activ;
 
-    public EmployeeVO(Long idAngajat, ClasaConcediuVO clasaConcediu, UserVO user, ClasaSalariuVO clasaSalariu, FunctieVO functie, String nume, String cnp, String adresa, byte activ) {
+    public EmployeeVO(Long idAngajat, ClasaConcediu clasaConcediu, Users user, ClasaSalariu clasaSalariu, Functie functie, String nume, String cnp, String adresa, byte activ) {
         this.activ = activ;
         this.adresa = adresa;
-        this.idAngajat = idAngajat;
+        this.angajatId = idAngajat;
         this.clasaConcediu = clasaConcediu;
         this.clasaSalariu = clasaSalariu;
         this.cnp = cnp;
@@ -24,12 +33,24 @@ public class EmployeeVO {
         this.user = user;
     }
 
-    public Long getIdAngajat() {
-        return idAngajat;
+    public EmployeeVO(Long idAngajat, Long clasaConcediuId, Long userId, Long clasaSalariuId, Long functieId, String nume, String cnp, String adresa, byte activ) {
+        this.activ = activ;
+        this.adresa = adresa;
+        this.angajatId = idAngajat;
+        this.clasaConcediuId = clasaConcediuId;
+        this.clasaSalariuId = clasaSalariuId;
+        this.cnp = cnp;
+        this.functieId = functieId;
+        this.name = nume;
+        this.userId = userId;
     }
 
-    public void setIdAngajat(Long idAngajat) {
-        this.idAngajat = idAngajat;
+    public Long getAngajatId() {
+        return angajatId;
+    }
+
+    public void setAngajatId(Long angajatId) {
+        this.angajatId = angajatId;
     }
 
     public String getName() {
@@ -40,35 +61,35 @@ public class EmployeeVO {
         this.name = name;
     }
 
-    public FunctieVO getFunctie() {
+    public Functie getFunctie() {
         return functie;
     }
 
-    public void setFunctie(FunctieVO functie) {
+    public void setFunctie(Functie functie) {
         this.functie = functie;
     }
 
-    public ClasaConcediuVO getClasaConcediu() {
+    public ClasaConcediu getClasaConcediu() {
         return clasaConcediu;
     }
 
-    public void setClasaConcediu(ClasaConcediuVO clasaConcediu) {
+    public void setClasaConcediu(ClasaConcediu clasaConcediu) {
         this.clasaConcediu = clasaConcediu;
     }
 
-    public UserVO getUser() {
+    public Users getUser() {
         return user;
     }
 
-    public void setUser(UserVO user) {
+    public void setUser(Users user) {
         this.user = user;
     }
 
-    public ClasaSalariuVO getClasaSalariu() {
+    public ClasaSalariu getClasaSalariu() {
         return clasaSalariu;
     }
 
-    public void setClasaSalariu(ClasaSalariuVO clasaSalariu) {
+    public void setClasaSalariu(ClasaSalariu clasaSalariu) {
         this.clasaSalariu = clasaSalariu;
     }
 
@@ -96,5 +117,35 @@ public class EmployeeVO {
         this.activ = activ;
     }
 
-   
+    public Long getClasaConcediuId() {
+        return clasaConcediuId;
+    }
+
+    public void setClasaConcediuId(Long clasaConcediuId) {
+        this.clasaConcediuId = clasaConcediuId;
+    }
+
+    public Long getClasaSalariuId() {
+        return clasaSalariuId;
+    }
+
+    public void setClasaSalariuId(Long clasaSalariuId) {
+        this.clasaSalariuId = clasaSalariuId;
+    }
+
+    public Long getFunctieId() {
+        return functieId;
+    }
+
+    public void setFunctieId(Long functieId) {
+        this.functieId = functieId;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
 }

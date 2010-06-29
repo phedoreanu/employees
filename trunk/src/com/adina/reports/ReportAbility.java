@@ -44,7 +44,7 @@ public class ReportAbility {
         Reports report = new Reports();
         if (id != null) {
             try {
-                jasperPrint = report.generateReport("/reports/rapport_commande_txt.jasper", abilityDataSource);
+                jasperPrint = report.generateReport("/reports/rapport_ability.jasper", abilityDataSource);
                 LOG.debug("pdfArray: inainte de pdfByteArray");
 
                 JRCsvExporter exporter = new JRCsvExporter();

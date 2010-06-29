@@ -20,7 +20,7 @@ public class FunctieController implements Serializable {
     }
 
     public List<FunctieVO> getAllPositions() {
-        return fctDAO.getAllFunctie();
+        return fctDAO.getAllPositions();
     }
 
     public String insertFunctie() {

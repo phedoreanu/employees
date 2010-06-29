@@ -18,8 +18,6 @@ public class ReportServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException {
-        FacesUtil.getFacesContext(request, response);
-
         String reportName = request.getParameter("reportName");
         String title = request.getParameter("reportTitle");
         LOG.debug("ReportServlet: doGet: TITLE= " + title + " | REPORT NAME = " + reportName);

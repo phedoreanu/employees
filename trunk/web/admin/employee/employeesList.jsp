@@ -31,7 +31,7 @@
                                     <div style="clear: both;">&nbsp;</div>
                                     <div class="entry">
                                         <h:form>
-                                            <h:dataTable border="1" value="#{employeeBean}" var="employee">
+                                            <h:dataTable border="1" value="#{employeeBean.employeesList}" var="employee">
                                                 <h:column id="column1">
                                                     <f:facet name="header">
                                                         <h:outputText value="Name"></h:outputText>
@@ -54,25 +54,25 @@
                                                     <f:facet name="header">
                                                         <h:outputText value="Position"></h:outputText>
                                                     </f:facet>
-                                                    <h:outputText value="#{}"/>
+                                                    <h:outputText value="#{employee.functieId}"/>
                                                 </h:column>
                                                 <h:column id="column5">
                                                     <f:facet name="header">
                                                         <h:outputText value="Username"></h:outputText>
                                                     </f:facet>
-                                                    <h:outputText value="#{}"/>
+                                                    <h:outputText value="#{employee.userId}"/>
                                                 </h:column>
                                                 <h:column id="column6">
                                                     <f:facet name="header">
                                                         <h:outputText value="Salary Class"></h:outputText>
                                                     </f:facet>
-                                                    <h:outputText value="#{}"/>
+                                                    <h:outputText value="#{employee.clasaSalariuId}"/>
                                                 </h:column>
                                                 <h:column id="column7">
                                                     <f:facet name="header">
                                                         <h:outputText value="Holiday Class"></h:outputText>
                                                     </f:facet>
-                                                    <h:outputText value="#{}"/>
+                                                    <h:outputText value="#{employee.clasaConcediuId}"/>
                                                 </h:column>
                                                 <h:column id="column8">
                                                     <f:facet name="header">
