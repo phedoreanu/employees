@@ -18,6 +18,7 @@ public class AbilitateDAO {
     private static final Logger LOG = Logger.getLogger(AbilitateController.class);
 
     public void fillAbilityBean(AbilitateBean bean) {
+        System.out.println("fillAbilityBean start!");
         Session session = HibernateUtil.getSessionFactory().openSession();
 
         try {
@@ -34,6 +35,7 @@ public class AbilitateDAO {
         } finally {
             session.close();
         }
+        System.out.println("fillAbilityBean end!");
     }
 
     public List<AbilitateVO> getAllAbilities() {

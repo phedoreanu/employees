@@ -13,7 +13,7 @@ public class AbilitateBean implements Serializable {
     private List<AbilitateVO> abilities;
 
     public AbilitateBean() {
-
+        System.out.println("AbilitateBean constructor!");
         try {
             String id1 = FacesUtil.getRequestParameter("id");
             setId(Long.parseLong(id1));
