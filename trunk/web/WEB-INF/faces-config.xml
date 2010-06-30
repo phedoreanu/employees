@@ -82,6 +82,17 @@
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
 
+    <managed-bean>
+        <managed-bean-name>extraInfoBean</managed-bean-name>
+        <managed-bean-class>com.adina.bean.ExtraInfoBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>extraInfoController</managed-bean-name>
+        <managed-bean-class>com.adina.controller.ExtraInfoController</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
     <navigation-rule>
         <navigation-case>
             <from-outcome>adminList</from-outcome>

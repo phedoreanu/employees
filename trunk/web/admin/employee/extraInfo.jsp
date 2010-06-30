@@ -38,10 +38,26 @@
                                     <div style="clear: both;">&nbsp;</div>
                                     <div class="entry">
 
-                                        <h:form>
-                                            <t:saveState value="#{employeeBean}"/>
-                                            
-                                        </h:form>
+                                        <h:dataTable border="1" value="#{extraInfoBean.locuriAnterioare}" var="loc">
+                                            <h:column id="column1">
+                                                <f:facet name="header">
+                                                    <h:outputText value="Name"></h:outputText>
+                                                </f:facet>
+                                                <h:outputText value="#{loc.numeLoc}"/>
+                                            </h:column>
+                                            <h:column id="column2">
+                                                <f:facet name="header">
+                                                    <h:outputText value="Address"></h:outputText>
+                                                </f:facet>
+                                                <h:outputText value="#{loc.dataAngajare}"/>
+                                            </h:column>
+                                            <h:column id="column3">
+                                                <f:facet name="header">
+                                                    <h:outputText value="CNP"></h:outputText>
+                                                </f:facet>
+                                                <h:outputText value="#{employee.dataPlecare}"/>
+                                            </h:column>
+                                        </h:dataTable>
 
                                         <p class="links"><a href="http://localhost:8084/employees/about.jsp">About</a></p>
                                     </div>
