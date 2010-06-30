@@ -42,7 +42,7 @@
                         </a>
                 </ul>
             </li>
-            <li><a href="http://localhost:8084/employees/admin/changePassword.jsf" >Change password</a></li>
+            <li><a href="http://localhost:8084/employees/admin/changePassword.jsf?userName=<%=request.getUserPrincipal().getName()%>" >Change password</a></li>
            
         </ul>
     </body>
