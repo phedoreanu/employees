@@ -3,6 +3,7 @@ package com.adina.DAO;
 import com.adina.bean.ClasaSalariuBean;
 import com.adina.controller.ClasaSalariuController;
 import java.util.List;
+import javax.faces.model.SelectItem;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -43,6 +44,23 @@ public class ClasaSalariuDAO {
         try {
             transaction = session.beginTransaction();
             listClasaSalariu = session.createQuery("select new com.adina.vo.ClasaSalariuVO(idClasaSalariu, nrClasa) from ClasaSalariu").list();
+            transaction.commit();
+        } catch (HibernateException e) {
+            transaction.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return listClasaSalariu;
+    }
+
+    List<SelectItem> getAllClasaSalariuAsSelectItems() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
+        List<SelectItem> listClasaSalariu = null;
+        try {
+            transaction = session.beginTransaction();
+            listClasaSalariu = session.createQuery("select new javax.faces.model.SelectItem(idClasaSalariu, nrClasa) from ClasaSalariu").list();
             transaction.commit();
         } catch (HibernateException e) {
             transaction.rollback();

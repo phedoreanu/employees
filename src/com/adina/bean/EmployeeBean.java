@@ -11,6 +11,7 @@ public class EmployeeBean {
     private Long angajatId;
     private String name;
     private Long positionId;
+    private String positionName;
     private Long clasaConcediuId;
     private Long userId;
     private Long clasaSalariuId;
@@ -19,6 +20,9 @@ public class EmployeeBean {
     private byte activ;
     private List<EmployeeVO> employeesList;
     private List<SelectItem> positions;
+    private List<SelectItem> users;
+    private List<SelectItem> holidayClass;
+    private List<SelectItem> salaryClass;
 
     public EmployeeBean() {
         try {
@@ -117,5 +121,37 @@ public class EmployeeBean {
 
     public void setPositions(List<SelectItem> positions) {
         this.positions = positions;
+    }
+
+    public List<SelectItem> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<SelectItem> users) {
+        this.users = users;
+    }
+
+    public List<SelectItem> getHolidayClass() {
+        return holidayClass;
+    }
+
+    public void setHolidayClass(List<SelectItem> holidayClass) {
+        this.holidayClass = holidayClass;
+    }
+
+    public List<SelectItem> getSalaryClass() {
+        return salaryClass;
+    }
+
+    public void setSalaryClass(List<SelectItem> salaryClass) {
+        this.salaryClass = salaryClass;
+    }
+
+    public String getPositionName() {
+        return positionName;
+    }
+
+    public void setPositionName(String positionName) {
+        this.positionName = positionName;
     }
 }

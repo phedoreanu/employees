@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.adina.reports.datasources;
 
 import com.adina.bean.AbilitateBean;
@@ -11,10 +8,6 @@ import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRField;
 
-/**
- *
- * @author fedo
- */
 public class AbilityDataSource implements JRDataSource {
 
     private int index = -1;

@@ -34,14 +34,28 @@ public class EmployeeDAO {
                 bean.setClasaSalariuId(employee.getClasaSalariu().getIdClasaSalariu());
                 bean.setCnp(employee.getCnp());
                 bean.setPositionId(employee.getFunctie().getIdFunctie());
+                bean.setPositionName(employee.getFunctie().getNumeFunctie());
                 bean.setName(employee.getNume());
                 bean.setUserId(employee.getUsers().getIdUser());
             } else {
-                bean.setEmployeesList(getAllEmployees());
+                //bean.setEmployeesList(getAllEmployees());
+                bean.setEmployeesList(getAllEmployeesDetailNames());
 
                 FunctieDAO functieDAO = new FunctieDAO();
                 List<SelectItem> positions = functieDAO.getAllPositionsAsSelectItems();
                 bean.setPositions(positions);
+
+                UserDAO userDAO = new UserDAO();
+                List<SelectItem> users = userDAO.getAllUsersAsSelectItems();
+                bean.setUsers(users);
+
+                ClasaConcediuDAO clsConcediuDAO = new ClasaConcediuDAO();
+                List<SelectItem> clsConcediuList = clsConcediuDAO.getAllClasaConcediuAsSelectItems();
+                bean.setHolidayClass(clsConcediuList);
+
+                ClasaSalariuDAO clsSalariuDAO = new ClasaSalariuDAO();
+                List<SelectItem> clsSalariuList = clsSalariuDAO.getAllClasaSalariuAsSelectItems();
+                bean.setSalaryClass(clsSalariuList);
             }
         } catch (HibernateException e) {
             e.printStackTrace();
@@ -69,6 +83,24 @@ public class EmployeeDAO {
 
     }
 
+    public List<EmployeeVO> getAllEmployeesDetailNames() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
+        List<EmployeeVO> employeesList = null;
+        try {
+            transaction = session.beginTransaction();
+            employeesList = session.createQuery("select new com.adina.vo.EmployeeVO(idAngajat, clasaConcediu.nrClasa, users.username, clasaSalariu.nrClasa, functie.numeFunctie, nume, cnp, adresa, activ) from Angajat").list();
+            transaction.commit();
+        } catch (HibernateException e) {
+            transaction.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return employeesList;
+
+    }
+
     public void insertEmployee(EmployeeBean bean) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
@@ -82,7 +114,11 @@ public class EmployeeDAO {
             angajat.setCnp(bean.getCnp());
             if (bean.getPositionId() != null) {
                 Functie functie = new Functie();
-                functie.setIdFunctie(bean.getPositionId());
+                Long idf = bean.getPositionId();
+                functie.setIdFunctie(idf);
+                /* FunctieDAO fctDAO = new FunctieDAO();
+                String positionName = fctDAO.getPositionNameById(idf);
+                functie.setNumeFunctie(positionName);*/
                 angajat.setFunctie(functie);
             }
 
@@ -115,14 +151,89 @@ public class EmployeeDAO {
     }
 
     public void updateEmployee(EmployeeBean bean) {
-        throw new UnsupportedOperationException("Not yet implemented");
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
+
+        try {
+            transaction = session.beginTransaction();
+
+            Long idAngajat = bean.getAngajatId();
+            String name = bean.getName();
+            String cnp = bean.getCnp();
+            String adresa = bean.getAdresa();
+            byte activ = bean.getActiv();
+            Functie functie = new Functie();
+            ClasaConcediu clsConcediu = new ClasaConcediu();
+            ClasaSalariu clsSalariu = new ClasaSalariu();
+            Users users = new Users();
+
+            if (bean.getPositionId() != null) {
+                functie.setIdFunctie(bean.getPositionId());
+            }
+            if (bean.getClasaConcediuId() != null) {
+                clsConcediu.setIdClasaConcediu(bean.getClasaConcediuId());
+            }
+            if (bean.getClasaSalariuId() != null) {
+                clsSalariu.setIdClasaSalariu(bean.getClasaSalariuId());
+            }
+            if (bean.getUserId() != null) {
+                users.setIdUser(bean.getUserId());
+            }
+            if (idAngajat != null) {
+                Angajat employee = (Angajat) session.get(Angajat.class, idAngajat);
+                if (activ == 0) {
+                    employee.setActiv((byte) 0);
+                } else {
+                    employee.setActiv((byte) 1);
+                }
+                employee.setAdresa(adresa);
+                employee.setCnp(cnp);
+                employee.setClasaConcediu(clsConcediu);
+                employee.setClasaSalariu(clsSalariu);
+                employee.setFunctie(functie);
+                employee.setNume(name);
+                employee.setUsers(users);
+                session.update(employee);
+                transaction.commit();
+            } else {
+                LOG.error("No employee id!");
+            }
+
+        } catch (HibernateException e) {
+            transaction.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
     }
 
     public void disableEmployee(EmployeeBean bean) {
-        throw new UnsupportedOperationException("Not yet implemented");
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
+
+        try {
+            transaction = session.beginTransaction();
+            Long idAngajat = bean.getAngajatId();
+            if (idAngajat != null) {
+                Angajat employee = (Angajat) session.get(Angajat.class, idAngajat);
+                employee.setActiv((byte) 0);
+                session.update(employee);
+                transaction.commit();
+            }
+            else{
+                LOG.error("No employee id!");
+            }
+        } catch (HibernateException e) {
+            transaction.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
     }
 
     public void addExtraInfo(EmployeeBean bean) {
         throw new UnsupportedOperationException("Not yet implemented");
+
+
     }
 }

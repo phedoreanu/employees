@@ -16,7 +16,7 @@ public class MD5Digest {
         return sb.toString();
     }
 
-    public static void main(String[] args) throws Exception {
+    /*public static void main(String[] args) throws Exception {
         if (args.length != 1) {
             System.err.println("String to MD5 digest should be first and only parameter");
             return;
@@ -33,5 +33,5 @@ public class MD5Digest {
         System.out.println("original:" + original);
         System.out.println("digested:" + digest);
         System.out.println("digested(hex):" + sb.toString());
-    }
+    }*/
 }

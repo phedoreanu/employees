@@ -26,7 +26,7 @@
                                 </p>
                                 <div style="clear: both;">&nbsp;</div>
                                 <div class="entry">
-                                    <p>This is a site for employee management</p>
+                                    <p>This is a web site for employee management</p>
                                     <p class="links"><a href="http://localhost:8084/employees/about.jsp">About</a></p>
                                 </div>
                             </div>

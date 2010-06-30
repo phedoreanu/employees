@@ -38,46 +38,75 @@
                                     <div style="clear: both;">&nbsp;</div>
                                     <div class="entry">
 
-                                        <h:form>
-                                            <h:outputText value="Name"/>&nbsp;&nbsp;
-                                            <h:inputText id="name" value="#{employeeBean.name}" required="true" requiredMessage="Fill name textbox!"/>&nbsp;&nbsp
-                                            <br>
-
-                                            <h:outputText value="Address"/>&nbsp;&nbsp;
-                                            <h:inputText id="address" value="#{employeeBean.adresa}" required="true" requiredMessage="Fill address textbox!"/>&nbsp;&nbsp
-                                            <br>
-
-                                            <h:outputText value="CNP"/>&nbsp;&nbsp;
-                                            <h:inputText id="cnp" value="#{employeeBean.cnp}" required="true" requiredMessage="Fill CNP textbox!">
-                                                <f:validateLength maximum="13" minimum="13"/>
-                                            </h:inputText> &nbsp;&nbsp
-                                            <br>
-
-                                            <h:outputText value="Position"/>&nbsp;&nbsp;
-                                            <t:selectOneListbox id="positionId" size="1" value="#{employeeBean.positionId}">
-                                                <t:selectItems value="#{employeeBean.positions}" var="p" itemLabel="#{p.label}" itemValue="#{p.value}"/>
-                                            </t:selectOneListbox>
-                                            <br>
-
-                                            <%--<h:outputText value="Username"/>&nbsp;&nbsp;
-                                            <t:selectOneListbox id="userId" size="1" value="#{userBean.username}">
-                                                <t:selectItems value="#{userBean.users}" var="u" itemLabel="#{u.label}" itemValue="#{u.label}"/>
-                                            </t:selectOneListbox>--%>
-                                            <br>
-                                            <%--
-                                            <h:outputText value="Salary Class"/>&nbsp;&nbsp;
-                                            <t:selectOneListbox id="salaryId" size="1" value="#{}">
-                                                <t:selectItems value="#{}" var="u" itemLabel="#{u.label}" itemValue="#{u.label}"/>
-                                            </t:selectOneListbox>
-                                            <br>
-
-                                            <h:outputText value="Holiday Class"/>&nbsp;&nbsp;
-                                            <t:selectOneListbox id="holidayId" size="1" value="#{}">
-                                                <t:selectItems value="#{}" var="u" itemLabel="#{u.label}" itemValue="#{u.label}"/>
-                                            </t:selectOneListbox>
-                                            <br>
-                                            --%>
-
+                                        <h:form id="employeeForm">
+                                            <table>
+                                                <tr>
+                                                    <td>
+                                                        <h:outputText value="Name"/>&nbsp;&nbsp;
+                                                    </td>
+                                                    <td>
+                                                        <h:inputText id="name" value="#{employeeBean.name}" required="true" requiredMessage="Fill name textbox!"/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <h:outputText value="Address"/>
+                                                    </td>
+                                                    <td>
+                                                        <h:inputText id="address" value="#{employeeBean.adresa}" required="true" requiredMessage="Fill address textbox!"/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <h:outputText value="CNP"/>
+                                                    </td>
+                                                    <td>
+                                                        <h:inputText id="cnp" value="#{employeeBean.cnp}" required="true" requiredMessage="Fill CNP textbox!">
+                                                            <f:validateLength maximum="13" minimum="13"/>
+                                                        </h:inputText>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <h:outputText value="Position"/>
+                                                    </td>
+                                                    <td>
+                                                        <t:selectOneListbox id="positionId" size="1" value="#{employeeBean.positionId}">
+                                                            <t:selectItems value="#{employeeBean.positions}" var="p" itemLabel="#{p.label}" itemValue="#{p.value}"/>
+                                                        </t:selectOneListbox>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <h:outputText value="Username"/>
+                                                    </td>
+                                                    <td>
+                                                        <t:selectOneListbox id="userId" size="1" value="#{employeeBean.userId}">
+                                                            <t:selectItems value="#{employeeBean.users}" var="u" itemLabel="#{u.label}" itemValue="#{u.value}"/>
+                                                        </t:selectOneListbox>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <h:outputText value="Holiday Class"/>
+                                                    </td>
+                                                    <td>
+                                                        <t:selectOneListbox id="holidayId" size="1" value="#{employeeBean.clasaConcediuId}">
+                                                            <t:selectItems value="#{employeeBean.holidayClass}" var="cc" itemLabel="#{cc.label}" itemValue="#{cc.value}"/>
+                                                        </t:selectOneListbox>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <h:outputText value="Salary Class"/>
+                                                    </td>
+                                                    <td>
+                                                        <t:selectOneListbox id="salaryId" size="1" value="#{employeeBean.clasaSalariuId}">
+                                                            <t:selectItems value="#{employeeBean.salaryClass}" var="cs" itemLabel="#{cs.label}" itemValue="#{cs.value}"/>
+                                                        </t:selectOneListbox>
+                                                    </td>
+                                                </tr>
+                                            </table>
 
                                             <h:commandButton action="#{employeeController.insertEmployee}" value="Insert"/>
                                             <h:messages styleClass="messages"/>

@@ -6,7 +6,6 @@
             if (request.getUserPrincipal() != null) {
                 String name = request.getUserPrincipal().getName();
             }
-            boolean isAdmin = request.isUserInRole("administrator");
 %>
 <html>
     <head>
@@ -43,13 +42,8 @@
                         </a>
                 </ul>
             </li>
-            <li><a href="">View Diagrams</a></li>
-            <li><a href="changePassword.jsf" >Change password</a></li>
-            <%
-                        if (isAdmin) {
-            %>
-            <li><a href="#" >Test admin</a></li>
-            <%}%>
+            <li><a href="http://localhost:8084/employees/admin/changePassword.jsf" >Change password</a></li>
+           
         </ul>
     </body>
 </html>

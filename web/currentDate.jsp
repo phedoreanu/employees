@@ -13,6 +13,6 @@
         <%!    DateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
             String now = fmt.format(new Date());
         %>
-        <span class="date">The date is <%=now%> </span>
+        <span class="date">Today is <%=now%> </span>
     </body>
 </html>

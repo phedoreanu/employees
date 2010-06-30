@@ -3,6 +3,7 @@ package com.adina.DAO;
 import com.adina.controller.ClasaConcediuController;
 import com.adina.bean.ClasaConcediuBean;
 import java.util.List;
+import javax.faces.model.SelectItem;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -43,6 +44,23 @@ public class ClasaConcediuDAO {
         try {
             transaction = session.beginTransaction();
             clsConcediuList = session.createQuery("select new com.adina.vo.ClasaConcediuVO(idClasaConcediu, nrClasa) from ClasaConcediu").list();
+            transaction.commit();
+        } catch (HibernateException e) {
+            transaction.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return clsConcediuList;
+    }
+
+    List<SelectItem> getAllClasaConcediuAsSelectItems() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
+        List<SelectItem> clsConcediuList = null;
+        try {
+            transaction = session.beginTransaction();
+            clsConcediuList = session.createQuery("select new javax.faces.model.SelectItem(idClasaConcediu, nrClasa) from ClasaConcediu").list();
             transaction.commit();
         } catch (HibernateException e) {
             transaction.rollback();
@@ -94,4 +112,6 @@ public class ClasaConcediuDAO {
         }
         return;
     }
+
+
 }

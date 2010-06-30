@@ -3,9 +3,10 @@ package com.adina.controller;
 import com.adina.DAO.EmployeeDAO;
 import com.adina.bean.EmployeeBean;
 import com.adina.util.FacesUtil;
+import java.io.Serializable;
 import org.apache.log4j.Logger;
 
-public class EmployeeController {
+public class EmployeeController implements Serializable{
 
     private static final Logger LOG = Logger.getLogger(EmployeeController.class);
     private EmployeeDAO employeeDAO;

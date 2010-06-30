@@ -19,16 +19,16 @@ public class FunctieDAO {
     private static final Logger LOG = Logger.getLogger(FunctieController.class);
 
     public void fillPositionBean(FunctieBean bean) {
-         Session session = HibernateUtil.getSessionFactory().openSession();
-         try{
-             Long id = bean.getId();
-             if (id != null){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
+            Long id = bean.getId();
+            if (id != null) {
                 Functie fct = (Functie) session.get(Functie.class, id);
                 bean.setName(fct.getNumeFunctie());
-             }else{
-                 bean.setPositions(getAllPositions());
-             }
-         }catch (HibernateException e) {
+            } else {
+                bean.setPositions(getAllPositions());
+            }
+        } catch (HibernateException e) {
             e.printStackTrace();
         } finally {
             session.close();
@@ -133,5 +133,27 @@ public class FunctieDAO {
             session.close();
         }
         return;
+    }
+
+    String getPositionNameById(Long idf) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
+        String name = "";
+        try {
+            transaction = session.beginTransaction();
+            if (idf != null) {
+                Functie fct = (Functie) session.get(Functie.class, idf);
+                name = fct.getNumeFunctie();
+                transaction.commit();
+            } else {
+                LOG.error("No position id!");
+            }
+        } catch (HibernateException e) {
+            transaction.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return name;
     }
 }

@@ -54,7 +54,7 @@
                                                     <f:facet name="header">
                                                         <h:outputText value="Position"></h:outputText>
                                                     </f:facet>
-                                                    <h:outputText value="#{employee.functieId}"/>
+                                                    <h:outputText value="#{employee.positionName}"/>
                                                 </h:column>
                                                 <h:column id="column5">
                                                     <f:facet name="header">

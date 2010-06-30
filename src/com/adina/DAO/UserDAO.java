@@ -81,6 +81,24 @@ public class UserDAO {
         return listUser;
     }
 
+
+     public List<SelectItem> getAllUsersAsSelectItems() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
+        List<SelectItem> listUsers = null;
+        try {
+            transaction = session.beginTransaction();
+            listUsers = session.createQuery("select new javax.faces.model.SelectItem(idUser, username, password) from Users").list();
+            transaction.commit();
+        } catch (HibernateException e) {
+            transaction.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return listUsers;
+    }
+
     public void insertUser(UserBean bean) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
@@ -141,7 +159,13 @@ public class UserDAO {
             if (id != null) {
                 Users u = (Users) session.get(Users.class, id);
                 u.setUsername(bean.getUsername());
-                u.setPassword(bean.getPassword());
+                String originalPassword = bean.getPassword();
+                try {
+                    String md5Password = MD5Digest.encodePassword(originalPassword);
+                    u.setPassword(md5Password);
+                } catch (NoSuchAlgorithmException ex) {
+                    u.setPassword(originalPassword);
+                }
                 session.update(u);
                 transaction.commit();
             } else {
