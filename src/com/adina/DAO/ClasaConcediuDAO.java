@@ -12,7 +12,9 @@ import org.hibernate.Transaction;
 import com.adina.objects.ClasaConcediu;
 import com.adina.util.HibernateUtil;
 import com.adina.vo.ClasaConcediuVO;
+import java.util.ArrayList;
 import org.apache.log4j.Logger;
+import org.hibernate.Query;
 
 public class ClasaConcediuDAO {
 
@@ -57,10 +59,17 @@ public class ClasaConcediuDAO {
     List<SelectItem> getAllClasaConcediuAsSelectItems() {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
-        List<SelectItem> clsConcediuList = null;
+        List<SelectItem> clsConcediuList = new ArrayList<SelectItem>();
         try {
             transaction = session.beginTransaction();
-            clsConcediuList = session.createQuery("select new javax.faces.model.SelectItem(idClasaConcediu, nrClasa) from ClasaConcediu").list();
+            Query query = session.createQuery("select idClasaConcediu, nrClasa from ClasaConcediu");
+            List<Object[]> results = query.list();
+             for (Object[] ob : results) {
+                Long id = (Long) ob[0];
+                Integer nrClasa = (Integer) ob[1];
+                SelectItem si = new SelectItem(id, nrClasa.toString());
+                clsConcediuList.add(si);
+            }
             transaction.commit();
         } catch (HibernateException e) {
             transaction.rollback();

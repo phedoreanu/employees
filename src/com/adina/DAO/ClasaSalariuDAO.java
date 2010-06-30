@@ -13,7 +13,10 @@ import org.hibernate.Transaction;
 import com.adina.objects.ClasaSalariu;
 import com.adina.util.HibernateUtil;
 import com.adina.vo.ClasaSalariuVO;
+import java.util.ArrayList;
+
 import org.apache.log4j.Logger;
+import org.hibernate.Query;
 
 public class ClasaSalariuDAO {
 
@@ -57,10 +60,17 @@ public class ClasaSalariuDAO {
     List<SelectItem> getAllClasaSalariuAsSelectItems() {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
-        List<SelectItem> listClasaSalariu = null;
+        List<SelectItem> listClasaSalariu = new ArrayList<SelectItem>();
         try {
             transaction = session.beginTransaction();
-            listClasaSalariu = session.createQuery("select new javax.faces.model.SelectItem(idClasaSalariu, nrClasa) from ClasaSalariu").list();
+            Query userQuery = session.createQuery("select idClasaSalariu, nrClasa from ClasaSalariu");
+            List<Object[]> results = userQuery.list();
+            for (Object[] ob : results) {
+                Long id = (Long) ob[0];
+                Integer nrClasa = (Integer) ob[1];
+                SelectItem si = new SelectItem(id, nrClasa.toString());
+                listClasaSalariu.add(si);
+            }
             transaction.commit();
         } catch (HibernateException e) {
             transaction.rollback();

@@ -60,19 +60,19 @@
                                                     <f:facet name="header">
                                                         <h:outputText value="Username"></h:outputText>
                                                     </f:facet>
-                                                    <h:outputText value="#{employee.userId}"/>
+                                                    <h:outputText value="#{employee.username}"/>
                                                 </h:column>
                                                 <h:column id="column6">
                                                     <f:facet name="header">
                                                         <h:outputText value="Salary Class"></h:outputText>
                                                     </f:facet>
-                                                    <h:outputText value="#{employee.clasaSalariuId}"/>
+                                                    <h:outputText value="#{employee.nrClasaSalariu}"/>
                                                 </h:column>
                                                 <h:column id="column7">
                                                     <f:facet name="header">
                                                         <h:outputText value="Holiday Class"></h:outputText>
                                                     </f:facet>
-                                                    <h:outputText value="#{employee.clasaConcediuId}"/>
+                                                    <h:outputText value="#{employee.nrClasaConcediu}"/>
                                                 </h:column>
                                                 <h:column id="column8">
                                                     <f:facet name="header">
