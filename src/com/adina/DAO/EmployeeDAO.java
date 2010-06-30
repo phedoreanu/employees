@@ -90,6 +90,7 @@ public class EmployeeDAO {
         try {
             transaction = session.beginTransaction();
             employeesList = session.createQuery("select new com.adina.vo.EmployeeVO(idAngajat, clasaConcediu.nrClasa, users.username, clasaSalariu.nrClasa, functie.numeFunctie, nume, cnp, adresa, activ) from Angajat").list();
+            System.out.println("employeesList.size()=" + employeesList.size());
             transaction.commit();
         } catch (HibernateException e) {
             transaction.rollback();
