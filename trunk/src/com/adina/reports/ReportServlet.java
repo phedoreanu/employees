@@ -1,6 +1,7 @@
 package com.adina.reports;
 
 import com.adina.reports.util.ReportsUtil;
+import com.adina.util.FacesUtil;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -19,6 +20,8 @@ public class ReportServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+        FacesUtil.getFacesContext(request, response);
+
         String reportName = request.getParameter("reportName");
         String title = request.getParameter("reportTitle");
         LOG.debug("ReportServlet: doGet: TITLE= " + title + " | REPORT NAME = " + reportName);

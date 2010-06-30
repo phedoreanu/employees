@@ -1,7 +1,7 @@
-
 package com.adina.reports.datasources;
 
 import com.adina.bean.AbilitateBean;
+import com.adina.util.FacesUtil;
 import com.adina.vo.AbilitateVO;
 import java.util.List;
 import net.sf.jasperreports.engine.JRDataSource;
@@ -19,7 +19,7 @@ public class AbilityDataSource implements JRDataSource {
     }
 
     public AbilityDataSource(String title) {
-        AbilitateBean bean = new AbilitateBean();
+        bean = (AbilitateBean) FacesUtil.getBeanByName("abilitateBean");
         abilities = bean.getAbilities();
     }
 

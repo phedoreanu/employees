@@ -23,6 +23,7 @@ public class FacesUtil {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         if (facesContext == null) {
             LOG.warn("No faces context, cannot getBeanByName", new Throwable());
+            System.out.println("No faces context, cannot getBeanByName");
             return null;
         }
 

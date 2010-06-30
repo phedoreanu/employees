@@ -18,6 +18,8 @@ public class AbilitateController implements Serializable {
     private AbilitateDAO abilitateDAO;
 
     public AbilitateController() {
+        System.out.println("AbilitateController constructor!");
+
         abilitateDAO = new AbilitateDAO();
     }
 
