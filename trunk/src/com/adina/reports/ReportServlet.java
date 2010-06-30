@@ -1,7 +1,6 @@
 package com.adina.reports;
 
 import com.adina.reports.util.ReportsUtil;
-import com.adina.util.FacesUtil;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -13,10 +12,12 @@ public class ReportServlet extends HttpServlet {
 
     private final static Logger LOG = Logger.getLogger(ReportServlet.class);
 
+    @Override
     protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException {
         doGet(httpServletRequest, httpServletResponse);
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         String reportName = request.getParameter("reportName");
         String title = request.getParameter("reportTitle");

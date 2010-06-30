@@ -8,36 +8,68 @@
 
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="http://localhost:8084/employees/css/style.css"/>
-        <title>Position Record</title>
+        <title>Position</title>
+        <link href="http://localhost:8084/employees/css/style.css" rel="stylesheet" type="text/css" media="screen" />
     </head>
+    <f:view>
+        <body>
 
-    <body>
-        <table>
-            <tr>
-                <td>
-                    <%@include file="../../menu.jsp" %>
-                </td>
-                <td>
-                    <f:view>
-                        <h:form>
-                            <t:saveState value="#{functieBean}"/>
+            <div id="wrapper">
+                <div id="header">
+                    <div id="logo">
+                        <h1><a href="#">Employees</a></h1>
+                    </div>
 
-                            <h:outputText value="New position name"/>&nbsp;&nbsp;
-                            <h:inputText value="#{functieBean.name}" required="true" requiredMessage="Fill position textbox!"/>
+                    <%@include file="../../header.jsp" %>
+                </div>
+                <div id="page">
+                    <div id="page-bgtop">
+                        <div id="page-bgbtm">
+                            <div id="content">
+                                <div class="post">
+                                    <h2 class="title"><a href="#">Position</a></h2>
+                                    <p class="meta">
+                                        <%@include file="../../currentDate.jsp" %>
+                                        <%@include file="../../userRole.jsp" %>
+                                    </p>
+                                    <div style="clear: both;">&nbsp;</div>
+                                    <div class="entry">
 
-                            <h:commandButton action="#{functieController.updateFunctie}" value="Update"/>
-                            <br><br>
-                            <h:messages styleClass="messages"/>
-                            <h:outputText value="If you wish to delete this position click "/>&nbsp;
-                            <h:commandLink action="#{functieController.deleteFunctie}">
-                                <h:outputText value="here"/>
-                            </h:commandLink>
+                                        <h:form>
+                                            <t:saveState value="#{functieBean}"/>
 
-                        </h:form>
-                    </f:view>
-                </td>
-            </tr>
-        </table>
+                                            <h:outputText value="New position name"/>&nbsp;&nbsp;
+                                            <h:inputText value="#{functieBean.name}" required="true" requiredMessage="Fill position textbox!"/>
+
+                                            <h:commandButton action="#{functieController.updateFunctie}" value="Update"/>
+                                            <br><br>
+                                            <h:messages styleClass="messages"/>
+                                            <h:outputText value="If you wish to delete this position click "/>&nbsp;
+                                            <h:commandLink action="#{functieController.deleteFunctie}">
+                                                <h:outputText value="here"/>
+                                            </h:commandLink>
+
+                                        </h:form>
+
+                                        <p class="links"><a href="http://localhost:8084/employees/about.jsp">About</a></p>
+                                    </div>
+                                </div>
+                                <div style="clear: both;">&nbsp;</div>
+                            </div>
+
+                            <%@include file="../../menu.jsp" %>
+
+                            <div style="clear: both;">&nbsp;</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="footer">
+                <p>Copyright &copy;  2010  All rights reserved.</p>
+            </div>
+
+        </f:view>
     </body>
 </html>
+
+

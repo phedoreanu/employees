@@ -14,12 +14,16 @@ public class EmployeeVO {
     private Users user;
     private ClasaSalariu clasaSalariu;
     private Long functieId;
+    private String positionName;
     private Long clasaConcediuId;
     private Long userId;
     private Long clasaSalariuId;
     private String cnp;
     private String adresa;
     private byte activ;
+    private Integer nrClasaConcediu;
+    private Integer nrClasaSalariu;
+    private String username;
 
     public EmployeeVO(Long idAngajat, ClasaConcediu clasaConcediu, Users user, ClasaSalariu clasaSalariu, Functie functie, String nume, String cnp, String adresa, byte activ) {
         this.activ = activ;
@@ -43,6 +47,18 @@ public class EmployeeVO {
         this.functieId = functieId;
         this.name = nume;
         this.userId = userId;
+    }
+
+    public EmployeeVO(Long idAngajat, Integer nrClasaConcediu, String username, Integer nrClasaSalariu, String positionName, String nume, String cnp, String adresa, byte activ) {
+        this.activ = activ;
+        this.name = nume;
+        this.adresa = adresa;
+        this.username = username;
+        this.angajatId = idAngajat;
+        this.cnp = cnp;
+        this.positionName = positionName;
+        this.nrClasaConcediu = nrClasaConcediu;
+        this.nrClasaSalariu = nrClasaSalariu;
     }
 
     public Long getAngajatId() {
@@ -147,5 +163,37 @@ public class EmployeeVO {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public String getPositionName() {
+        return positionName;
+    }
+
+    public void setPositionName(String positionName) {
+        this.positionName = positionName;
+    }
+
+    public Integer getNrClasaConcediu() {
+        return nrClasaConcediu;
+    }
+
+    public void setNrClasaConcediu(Integer nrClasaConcediu) {
+        this.nrClasaConcediu = nrClasaConcediu;
+    }
+
+    public Integer getNrClasaSalariu() {
+        return nrClasaSalariu;
+    }
+
+    public void setNrClasaSalariu(Integer nrClasaSalariu) {
+        this.nrClasaSalariu = nrClasaSalariu;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }
